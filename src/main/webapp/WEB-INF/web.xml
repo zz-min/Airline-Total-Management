@@ -15,8 +15,14 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>DispatcherServlet</display-name>
+  	<servlet-name>DispatcherServlet</servlet-name>
+  	<servlet-class>com.web.atm.comtroller.DispatcherServlet</servlet-class>
+  </servlet>
 	<servlet-mapping>
-		<servlet-name>default</servlet-name>
 		<url-pattern>*.js</url-pattern>
 		<url-pattern>*.css</url-pattern>
 		<url-pattern>*.ico</url-pattern>
@@ -25,5 +31,9 @@
 		<url-pattern>*.htc</url-pattern>
 		<url-pattern>*.gif</url-pattern>
 		<url-pattern>*.txt</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<url-pattern>/DispatcherServlet</url-pattern>
 	</servlet-mapping>
 </web-app>
