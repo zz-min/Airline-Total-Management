@@ -25,7 +25,7 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
 	<!-- JavaScript -->
-	<script src="/js/main.js" defer></script>
+	<script src="/js/main.js?djk" defer></script>
 	
 	<link href="/css/common.css?fX" rel="stylesheet" type="text/css"><!-- 공통 -->
 	<link href="/css/dialog.css" rel="stylesheet" type="text/css"><!-- 모든 다이알로그 공통 -->
@@ -41,7 +41,10 @@
 			</a>
 		</div>
 
-		<ul class="navbar_menu"></ul>
+		<ul class="navbar_menu">
+			<li id="main-nav1" class="menuBtn">항공편조회</li>
+			<li id="main-nav2" class="menuBtn">회원가입</li>
+		</ul>
 		
 		<div class="navbar_icons">
 			<div class="loginSection">
@@ -69,14 +72,72 @@
 				class="shape-fill"></path>
     </svg>
 	</div>
+	<!-------------------------- 윗부분 ------------------------ -->
 
 	<div id="mainContatiner">
-		<div class="home_form">
+		<!-- main form -->
+		<div class="main_form">
 			<div id="imgContatiner">
 				<img id="img" src="/img/airport.jpg">
 			</div>
 			<div id="selectContainer"></div>
 		</div>
+		<!-- 항공편 조회 form -->
+		<div class="flight_form" style="background-color: pink">
+		
+		</div>
+		
+		<!-- 회원가입 form -->
+		<div class="join_form" style="background-color: beige">
+			<div id="joinFormContainer">
+			<form id="joinForm">
+				<div class="inputText">
+					<label for="userName" id="nameLabel">이름 : &nbsp</label> 
+					<input type="text" name="userName" id="userName"
+						placeholder="이름을 입력하세요."
+						class=" ui-widget-content joinFormInput" required />
+				</div>
+				<div class="inputText">
+					<label for="userId" id="idLabel">&nbsp아이디 :&nbsp </label> 
+					<input type="text" name="userId" id="userId"
+						placeholder="ID를 입력하세요."
+						class="ui-widget-content joinFormInput" required />
+				</div>
+				<div class="inputText">
+					<label for="userPwd" id="passwordLabel">비밀번호 : &nbsp</label> 
+					<input type="password" name="userPwd" id="userPwd"
+						placeholder="비밀번호를 입력하세요."
+						class="ui-widget-content joinFormInput" required />
+				</div>
+				<div class="inputText">
+					<label for="userPhone" id="PhoneLabel">전화번호 : &nbsp</label> 
+					<input type="text" name="userPhone" id="userPhone"
+						placeholder="전화번호를 입력하세요."
+						class="ui-widget-content joinFormInput" required />
+				</div>
+				<div class="inputText">
+					<label for="userAddr" id="AddrLabel">집주소 : &nbsp</label> 
+					<input type="text" name="userAddr" id="userAddr"
+						placeholder="집주소를 입력하세요."
+						class="ui-widget-content joinFormInput" required />
+				</div>
+				<div class="inputText">
+					<label for="userBirth" id="BirthLabel">생년월일 : &nbsp</label> 
+					<input type="text" name="userBirth" id="userBirth"
+						placeholder="'1990-05-05'형식으로 입력하세요."
+						class="ui-widget-content joinFormInput" required />
+				</div>
+				<div class="inputText">
+					<label for="userpass" id="PassLabel">여권번호 : &nbsp</label> 
+					<input type="text" name="userpass" id="userpass"
+						placeholder="여권번호를 입력하세요."
+						class="ui-widget-content joinFormInput" required />
+				</div>
+				<input type="submit" value="회원가입 하기" id="joinSubmitBtn"/>
+			</form>
+			</div>
+		</div>
+		
 	</div>
 
 	<!------------------------- login dialog ------------------------->
@@ -84,22 +145,23 @@
 		<div class="login_property">
 			<div id="loginPropertyLeft" style="display: inline-block">
 				<div class="inputText">
-					<label for="userId" class="idLabel">&nbsp아이디 :&nbsp </label> 
-					<input type="text" name="userId" id="userId"
+					<label for="id" class="idLabel">&nbsp아이디 :&nbsp </label> 
+					<input type="text" name="id" id="id"
 						placeholder="ID를 입력하세요."
-						class="text ui-widget-content ui-corner-all id" required />
+						class="text ui-widget-content ui-corner-all" required />
 				</div>
 
 				<div class="inputText">
-					<label for="userPwd" class="passwordLabel">비밀번호 : &nbsp</label> 
-					<input type="password" name="userPwd" id="userPwd"
+					<label for="pwd" class="passwordLabel">비밀번호 : &nbsp</label> 
+					<input type="password" name="pwd" id="pwd"
 						placeholder="비밀번호를 입력하세요."
-						class="text ui-widget-content ui-corner-all password" required />
+						class="text ui-widget-content ui-corner-all" required />
 				</div>
 			</div>
 		</div>
 	</div><!-- login-dialog-form END-->
 	
+	<!-------------------------- 뒷부분 ------------------------ -->
 	<div class="custom-shape-divider-bottom-1637404622">
     <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
         <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>

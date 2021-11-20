@@ -1,26 +1,6 @@
 @charset "UTF-8";
 /* dialog field */
 /* 로그인 다이얼로그 */
-fieldset {
-	padding: 0;
-	border: 0;
-	width: 380px;
-	margin: 0 auto;
-}
-
-.loginTypeContainer {
-	font-size: 18px;
-	font-weight: 600;
-	text-align: center;
-	margin: 5px;
-}
-
-.loginType {
-	width: 20px;
-	height: 20px;
-	margin: 5px;
-}
-
 .inputText {
 	display: flex;
 	align-items:baseline;

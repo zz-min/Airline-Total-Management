@@ -31,7 +31,7 @@ table {
 }
 
 h1, h2, h3, h4, h5, h6, div, p, dl, dt, dd, ol, form, fieldset,
-	blockquote, address, table, thead, tbody, tfoot, tr, td, caption {
+	blockquote, address, table, thead, tbody, tfoot, tr, td,th, caption {
 	margin: 0;
 	padding: 0;
 }
@@ -116,6 +116,7 @@ img {
 .navbar_menu li:hover{
     background-color: var(--color-blue2);
     border-radius: 6px;
+    cursor: pointer;
 }
 .navbar_icons{
     flex-basis:30%;
@@ -144,10 +145,10 @@ img {
     background-color: var(--color-blue2);
     border-radius: 6px;
     margin: 10px;
+    cursor: pointer;
 }
 .logoutSection{
 	font-size: 15px;
-	display: none;
 }
 .logoutSection.active{
 	display: inline-block;
@@ -156,6 +157,7 @@ img {
 .logoutSection span:hover {
     background-color: var(--color-blue2);
     border-radius: 6px;
+    cursor: pointer;
 }
 .loginBtn_content{
     margin: 10px;

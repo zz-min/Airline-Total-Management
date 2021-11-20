@@ -10,6 +10,7 @@ import org.apache.commons.codec.binary.Base64;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.web.atm.comtroller.AtmService;
 import com.web.atm.comtroller.ControllerInterface;
+import com.web.atm.di.entity.User;
 
 public class ApiLoginController implements ControllerInterface {
 
@@ -37,13 +38,14 @@ public class ApiLoginController implements ControllerInterface {
 		if (temp[3].equals("user") ) {
 			boolean loginCheck = atmService.loginAvailability(id,pwd);//로그인 유효성 검사
 			if (loginCheck) {/* login 성공일때 쿠키생성 */
-				String userName=atmService.getUserName(id);
+				System.out.println("로그인 성공!!");
+				User loginUser=atmService.getUser(id);
 				
 				Cookie cookieId=new Cookie("userId",id);
 				cookieId.setPath("/");//쿠키를 모든 위치에서 사용가능
 				cookieId.setMaxAge(360);//60s*6 = 6M
 				
-				Cookie cookieName=new Cookie("userName",userName);
+				Cookie cookieName=new Cookie("userName",loginUser.getUserName());
 				cookieName.setPath("/");//쿠키를 모든 위치에서 사용가능
 				cookieName.setMaxAge(360);//60s
 				
@@ -54,6 +56,9 @@ public class ApiLoginController implements ControllerInterface {
 				response.addCookie(cookieId);
 				response.addCookie(cookieName);
 				response.addCookie(cookieType);
+				
+				HttpSession session=request.getSession(true);//가져올 세션이 없다면 새로 생성
+				session.setAttribute("user", loginUser);
 			}
 			returnMassage=loginCheck?"true":"false";
 		}else if (temp[3].equals("admin")) {

@@ -3,13 +3,13 @@ package com.web.atm.comtroller;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.web.atm.comtroller.Impl.AdminController;
+import com.web.atm.comtroller.Impl.AdminMainController;
 import com.web.atm.comtroller.Impl.ApiContentController;
 import com.web.atm.comtroller.Impl.ApiLoginController;
 import com.web.atm.comtroller.Impl.ApiScheduleController;
 import com.web.atm.comtroller.Impl.ApiUserController;
 import com.web.atm.comtroller.Impl.IndexController;
-import com.web.atm.comtroller.Impl.LoginController;
+import com.web.atm.comtroller.Impl.LoginMainController;
 
 public class HandlerMapping {
 	private Map<String, ControllerInterface> handlerMapper = null;
@@ -18,8 +18,8 @@ public class HandlerMapping {
 		handlerMapper = new HashMap<String, ControllerInterface>();
 
 		handlerMapper.put("/main", new IndexController());
-		handlerMapper.put("/main_login", new LoginController());
-		handlerMapper.put("/main_admin", new AdminController());
+		handlerMapper.put("/main_login", new LoginMainController());
+		handlerMapper.put("/main_admin", new AdminMainController());
 		handlerMapper.put("/index", new IndexController());
 		/*
 		 * handlerMapper.put("/main", new IndexController());

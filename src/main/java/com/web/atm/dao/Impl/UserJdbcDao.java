@@ -84,7 +84,7 @@ public class UserJdbcDao implements UserDao {
 	@Override
 	public User getUser(String id) {
 		User user=null;
-		String sql = "select userId, userName, phone, address, birth,passportNo from USER where userId = ?";
+		String sql = "select * from USER where userId = ?";
 		System.out.println("getUser함수 sql>>"+sql);
 		try {
 			connect();
@@ -96,6 +96,7 @@ public class UserJdbcDao implements UserDao {
 
 			if (rs.next()) {
 				user=new User();
+				user.setSn(rs.getInt("sn"));
 				user.setUserId(rs.getString("userId"));
 				user.setUserName(rs.getString("userName"));
 				user.setPhone(rs.getString("phone"));
@@ -177,6 +178,37 @@ public class UserJdbcDao implements UserDao {
 				}
 		}
 		return userList;
+	}
+
+	@Override
+	public boolean insertUser(User user) {
+		int TF=0;
+		String sql = "INSERT INTO USER(userId, userPwd, userName, phone, address, birth,passportNo) VALUES(?,?,?,?,?,?,?)";
+		try {
+			connect();
+			
+			stmt =  conn.prepareStatement(sql);
+			stmt.setString(1, user.getUserId());
+			stmt.setString(2, user.getUserPwd());
+			stmt.setString(3, user.getUserName());
+			stmt.setString(4, user.getPhone());
+			stmt.setString(5, user.getAddress());
+			stmt.setString(6, user.getBirth());
+			stmt.setString(7, user.getPassportNo());
+			System.out.println("insertUser SQL = " + sql);
+			TF=stmt.executeUpdate();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+				try {
+					disconnect();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		System.out.println("insertUser 결과 >"+TF);
+		
+		return TF==1?true:false;
 	}
 
 	

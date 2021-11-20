@@ -25,16 +25,16 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
 	<!-- JavaScript -->
-	<script src="/js/main.js" defer></script>
+	<script src="/js/main_login.js" defer></script>
 	
-	<link href="/css/common.css?fX" rel="stylesheet" type="text/css"><!-- 공통 -->
+	<link href="/css/common.css" rel="stylesheet" type="text/css"><!-- 공통 -->
 	<link href="/css/dialog.css" rel="stylesheet" type="text/css"><!-- 모든 다이알로그 공통 -->
-	<link href="/css/main.css?d" rel="stylesheet" type="text/css"><!-- main화면 -->
+	<link href="/css/main_login.css" rel="stylesheet" type="text/css"><!-- main화면 -->
 </head>
 <body>
 	<nav class="navbar">
 		<div class="navbar_logo">
-			<a href="/main"> 
+			<a href="/main_login"> 
 				<i class="fas fa-plane-departure"></i>
 				<span>Airline Total Management</span>
 				<i class="fas fa-plane-departure"></i>
@@ -42,14 +42,15 @@
 		</div>
 
 		<ul class="navbar_menu">
-			<li id="category1" class="menuBtn"><a href="/main/flight">항공편조회</a></li>
-			<li id="category2" class="menuBtn"><a href="/main/reservation">예약조회</a></li>
-			<li id="category3" class="menuBtn"><a href="/main/mypage">마이페이지</a></li>
+			<li id="login-nav1" class="menuBtn">항공편조회</li>
+			<li id="login-nav2" class="menuBtn">예약조회</li>
+			<li id="login-nav3" class="menuBtn">마이페이지</li>
 		</ul>
 		
 		<div class="navbar_icons">
 			<div class="loginSection">
-				<a id="loginZone"> <i class="fas fa-user-circle"></i> <span>Login</span>
+				<a id="loginZone"> <i class="fas fa-user-circle"></i> 
+				<span>${cookie.userName.value}</span>
 				</a>
 			</div>
 			<div class="logoutSection">
@@ -76,17 +77,55 @@
 				class="shape-fill"></path>
     </svg>
 	</div>
+	<!-------------------------- 윗부분 ------------------------ -->
 
 	<div id="mainContatiner">
-		<div class="home_form">
+		<!-- main form -->
+		<div class="main_form">
 			<div id="imgContatiner">
 				<img id="img" src="/img/airport.jpg">
 			</div>
 			<div id="selectContainer"></div>
 		</div>
+		<!-- 항공편 조회 form -->
+		<div class="flight_form" style="background-color: pink">
+		
+		</div>
+		<!-- 예약 조회 form -->
+		<div class="rsv_form" style="background-color: beige">
+		
+		</div>
+		<!-- 마이페이지 form -->
+		<div class="mypage_form" style="background-color: lightgray">
+			<div id="myInfoTableContainer">
+				<table border="1" id="myInfoTable">
+					<tr>
+						<th>고객번호</th>
+						<th>이름</th>
+						<th>아이디</th>
+						<th>비밀번호</th>
+						<th>전화번호</th>
+						<th>주소</th>
+						<th>생년월일</th>
+						<th>여권번호</th>
+					</tr>
+					<tr>
+						<td>${sessionScope.user.getSn()}</td>
+						<td>${sessionScope.user.getUserName()}</td>
+						<td>${sessionScope.user.getUserId()}</td>
+						<td>**************</td>
+						<td>${sessionScope.user.getPhone()}</td>
+						<td>${sessionScope.user.getAddress()}</td>
+						<td>${sessionScope.user.getBirth()}</td>
+						<td>${sessionScope.user.getPassportNo()}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		
 	</div>
 
-	
+	<!-------------------------- 뒷부분 ------------------------ -->
 	<div class="custom-shape-divider-bottom-1637404622">
     <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
         <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>

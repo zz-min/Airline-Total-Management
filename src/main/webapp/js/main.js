@@ -10,8 +10,9 @@ toggleBtn.addEventListener('click',()=>{
     icons.classList.toggle('active');
 });
 $(function() {
+	$("#logoutSection").css('display','none');
 	var userLoginDialog;
-	var userLoginField = $([]).add("#userId").add("#userPwd");
+	var userLoginField = $([]).add("#id").add("#pwd");
 	
 	userLoginDialog = $("#user-login-dialog-form").dialog({
 		autoOpen: false,//페이지 로드시 다이얼로그가 자동으로 열리는 것 방지
@@ -40,8 +41,8 @@ $(function() {
 			alert("아이디와 비밀번호를 다시 확인해 주세요.");
 		} else {
 			//true - 로그인 유효성 검사
-			const userId = btoa($("#userId").val());//base64 인코딩
-			const userPwd = btoa($("#userPwd").val());
+			const userId = btoa($("#id").val());//base64 인코딩
+			const userPwd = btoa($("#pwd").val());
 			var url = `/api/login/user?id=${userId}&pwd=${userPwd}`;// 로그인 요청보내기
 			loginFetch(url, userId, userPwd);
 		}
@@ -52,7 +53,6 @@ $(function() {
 			.then(res => res.text())
 			.then(res => {
 				if (res == 'true') {
-					console.log("로그인 성공 쿠키에 정된 '"+getCookie("userName")+"'이름의 타입 :"+getCookie("userType"));
 					document.location.href="/main_login";
 				} else{
 					userLoginField.addClass("ui-state-error");
@@ -61,49 +61,41 @@ $(function() {
 			});
 	}
 	
-	function getCookie(cookie_name) {
-		//document.cookie => userId=600548; userName=홍길동; login=true
-		var x, y;
-		var val = document.cookie.split(';');
-		for (var item of val) {
-			x = item.substr(0, item.indexOf('='));
-			y = item.substr(item.indexOf('=') + 1);
-			x = x.replace(/^\s+|\s+$/g, '');// 앞과 뒤의 공백 제거하기 
-			if (x == cookie_name) { return unescape(y); }// unescape로 디코딩 후 값 리턴 
-		}
-	} 
-	function delCookie(cookie_name) {
-		let date = new Date();
-		date.setDate(date.getDate() - 100);
-		let Cookie = `${cookie_name}=;Expires=Thu, 01 Jan 1970 00:00:00 GMT`
-		document.cookie = Cookie;
-	}
-	function delAllCookie() {
-		var x, y;
-		var val = document.cookie.split(';');
-		for (var item of val) {
-			x = item.substr(0, item.indexOf('='));
-			y = item.substr(item.indexOf('=') + 1);
-			x = x.replace(/^\s+|\s+$/g, '');// 앞과 뒤의 공백 제거하기 
-			console.log(x);
-			document.cookie = `${x}=;Expires=Thu, 01 Jan 1970 00:00:00 GMT`;
-		}
-	}
 	$("#loginZone").on("click", function() {
 		userLoginDialog.dialog("open");
 	});
-	$("#logoutBtn").on("click", function() {
-		alert("로그아웃");
-		$(".logoutSection").removeClass('active');
-		$("#loginZone").children(":eq(1)").text('Login');
-		delAllCookie();
-		/*
-		delCookie('userId');		
-		delCookie('userName');		
-		delCookie('userType');*/		
+	
+	$("#joinSubmitBtn").on("click", function() {
+		fetch('/api/users', {// 회원가입 요청보내기
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json; charset=UTF-8"
+			},
+			body: JSON.stringify({
+				userName: $('#userName').val(),
+				userId: $('#userId').val(),
+				userPwd: $('#userPwd').val(),
+				phone: $('#userPhone').val(),
+				address: $('#userAddr').val(),
+				birth: $('#userBirth').val(),
+				passportNo: $('#userpass').val()
+			}),
+			dataType: 'json'
+		})
+			.then(alert("회원가입이 되었습니다"))
+			.then(location.reload())
+			.catch(error => console.log(error))
 	});
-	$("#mypageBtn").on("click", function() {
-		alert("마이페이지");
+	
+	$("#main-nav1").on("click", function() {
+		$(".main_form").hide();
+		$(".flight_form").show();
+		$(".join_form").hide();
+	});
+	$("#main-nav2").on("click", function() {
+		$(".main_form").hide();
+		$(".flight_form").hide();
+		$(".join_form").show();
 	});
 	
 });

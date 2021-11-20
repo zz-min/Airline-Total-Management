@@ -6,6 +6,7 @@ import com.web.atm.di.entity.User;
 
 public interface UserDao {
 	boolean loginAvailability(String id, String pwd);
+	boolean insertUser(User user);
 	
 	User getUser(String id);
 	

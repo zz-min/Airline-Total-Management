@@ -20,20 +20,26 @@ public class AtmServiceImpl implements AtmService {
 	public boolean loginAvailability(String id, String pwd) {
 		return userDao.loginAvailability(id, pwd);	
 	}
+	@Override
+	public boolean insertUser(User user) {
+		return userDao.insertUser(user);
+	}
 
 	@Override
 	public User getUser(String id) {
-		return null;
+		return userDao.getUser(id);
 	}
 
 	@Override
 	public String getUserName(String id) {
-		return null;
+		return  userDao.getUserName(id);
 	}
 
 	@Override
 	public List<User> getUserList(String query) {
 		return null;
 	}
+
+	
 
 }
