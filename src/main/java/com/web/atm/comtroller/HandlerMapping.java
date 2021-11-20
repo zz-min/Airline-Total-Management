@@ -3,6 +3,14 @@ package com.web.atm.comtroller;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.web.atm.comtroller.Impl.AdminController;
+import com.web.atm.comtroller.Impl.ApiContentController;
+import com.web.atm.comtroller.Impl.ApiLoginController;
+import com.web.atm.comtroller.Impl.ApiScheduleController;
+import com.web.atm.comtroller.Impl.ApiUserController;
+import com.web.atm.comtroller.Impl.IndexController;
+import com.web.atm.comtroller.Impl.LoginController;
+
 public class HandlerMapping {
 	private Map<String, ControllerInterface> handlerMapper = null;
 
@@ -10,6 +18,8 @@ public class HandlerMapping {
 		handlerMapper = new HashMap<String, ControllerInterface>();
 
 		handlerMapper.put("/main", new IndexController());
+		handlerMapper.put("/main_login", new LoginController());
+		handlerMapper.put("/main_admin", new AdminController());
 		handlerMapper.put("/index", new IndexController());
 		/*
 		 * handlerMapper.put("/main", new IndexController());
@@ -17,11 +27,13 @@ public class HandlerMapping {
 		 * handlerMapper.put("/main/studio", new MainController());
 		 * handlerMapper.put("/main/rental", new MainController());
 		 * handlerMapper.put("/main/consulting", new MainController());
-		 * 
-		 * handlerMapper.put("/api/users", new ApiUserController());
-		 * handlerMapper.put("/api/schedules", new ApiScheduleController());
-		 * handlerMapper.put("/api/contents", new ApiContentController());
 		 */
+		 handlerMapper.put("/api/login", new ApiLoginController());
+		 
+		 handlerMapper.put("/api/users", new ApiUserController());
+		 handlerMapper.put("/api/admin", new ApiScheduleController());
+		 handlerMapper.put("/api/contents", new ApiContentController());
+		 
 	}
 
 	public ControllerInterface getHandler(String path) {

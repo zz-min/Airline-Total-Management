@@ -1,13 +1,20 @@
-package com.web.atm.comtroller;
+ package com.web.atm.comtroller;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.web.atm.dao.UserDao;
+import com.web.atm.dao.Impl.UserJdbcDao;
 
 /**
  * Servlet implementation class DispatcherServlet
@@ -23,17 +30,29 @@ public class DispatcherServlet extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
     public DispatcherServlet() {
-        super();
-        // TODO Auto-generated constructor stub
     }
-
     
 	@Override
 	public void init() throws ServletException {
 		System.out.println("DispatcherServlet init");
-		mapper = new HandlerMapping();
     	props = new Properties();
-    	athService= new AtmServiceImpl();
+    	 try {
+    		 InputStream reader = getClass().getClassLoader().getResourceAsStream(PROPERTIES_FILE);
+             props.load(reader);
+             System.out.println("db.properties파일 읽기 성공 > "+props.getProperty("jdbc.username"));
+         } catch (IOException e) {
+             System.out.println("Properties File Load Fail!");
+             e.printStackTrace();
+         }
+    	String driver = props.getProperty("jdbc.driverClassName");
+ 		String url = props.getProperty("jdbc.url");
+ 		String userName = props.getProperty("jdbc.username");
+ 		String password = props.getProperty("jdbc.password");
+ 		
+ 		UserDao userDao=new UserJdbcDao(driver, url, userName, password);
+ 		
+ 		mapper = new HandlerMapping();
+ 		athService= new AtmServiceImpl(userDao);
 	}
 	
 
@@ -52,6 +71,32 @@ public class DispatcherServlet extends HttpServlet {
 
 		// step #2. data processing ==> dispatch request to controller
 		ControllerInterface handler = mapper.getHandler(path);
+		if (path.contains("api")) {// REST API 기술
+			String data = handler.handleRequest(request, response, athService);
+			
+			// step #3. output processing results
+			response.setContentType("text/html;charset=UTF-8");
+			response.getWriter().write(data);
+
+		} else {//페이지 이동
+			Cookie[] cookies = request.getCookies() ;
+			HttpSession session=request.getSession(false);//가져올 세션이 없다면 false반환
+			//f()
+			if (handler != null) {
+				//session이 있거나 cookie가 존재하면 넘어가기 -> 아니라면 알람띄우고 메인페이지
+				viewName = handler.handleRequest(request, response, athService);
+			}
+			// step #3. output processing results
+			if (viewName == null) {
+				viewName = "error.jsp";
+			} else {
+				viewName = viewName.trim();// 공백제거함
+				viewName = "/WEB-INF/views/" + viewName;
+
+				RequestDispatcher view = request.getRequestDispatcher(viewName);
+				view.forward(request, response);
+			}
+		}
 	}
 
 	/**

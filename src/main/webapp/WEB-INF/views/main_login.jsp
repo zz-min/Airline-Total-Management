@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Main Pagee</title>
+<title>로그인완료</title>
 	<!-- font 사용 URL -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,12 +41,19 @@
 			</a>
 		</div>
 
-		<ul class="navbar_menu"></ul>
+		<ul class="navbar_menu">
+			<li id="category1" class="menuBtn"><a href="/main/flight">항공편조회</a></li>
+			<li id="category2" class="menuBtn"><a href="/main/reservation">예약조회</a></li>
+			<li id="category3" class="menuBtn"><a href="/main/mypage">마이페이지</a></li>
+		</ul>
 		
 		<div class="navbar_icons">
 			<div class="loginSection">
 				<a id="loginZone"> <i class="fas fa-user-circle"></i> <span>Login</span>
 				</a>
+			</div>
+			<div class="logoutSection">
+				<span id="logoutBtn" class="loginBtn_content">logout</span>
 			</div>
 		</div>
 		
@@ -79,26 +86,6 @@
 		</div>
 	</div>
 
-	<!------------------------- login dialog ------------------------->
-	<div id="user-login-dialog-form" class="dialog" title="로그인">
-		<div class="login_property">
-			<div id="loginPropertyLeft" style="display: inline-block">
-				<div class="inputText">
-					<label for="userId" class="idLabel">&nbsp아이디 :&nbsp </label> 
-					<input type="text" name="userId" id="userId"
-						placeholder="ID를 입력하세요."
-						class="text ui-widget-content ui-corner-all id" required />
-				</div>
-
-				<div class="inputText">
-					<label for="userPwd" class="passwordLabel">비밀번호 : &nbsp</label> 
-					<input type="password" name="userPwd" id="userPwd"
-						placeholder="비밀번호를 입력하세요."
-						class="text ui-widget-content ui-corner-all password" required />
-				</div>
-			</div>
-		</div>
-	</div><!-- login-dialog-form END-->
 	
 	<div class="custom-shape-divider-bottom-1637404622">
     <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
