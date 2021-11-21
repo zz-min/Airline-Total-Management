@@ -30,19 +30,70 @@
     /* display: flex;
     min-width: 1255px; */
 }
-#selectContainer{
-    background-color: var(--color-blue2);
-    border-radius: 20px;
-    width: 90%;
-    height: 15%;
-    min-width: 1255px;
-    margin: 0 auto;
-}
 #img{
     width: 800px;
     height: 500px;
     margin: 0 auto;
 }
+#selectContainer{
+    background-color: var(--color-blue2);
+    border-radius: 20px;
+    width: 1300px;
+    height: 100px;
+    display:flex;
+    flex-flow:column;
+    justify-content:center;
+    margin: 0 auto;
+}
+#serchFlightFormContainer{
+	margin:0 auto;
+}
+#serchFlightForm>label{
+	font-size: 20px;
+	margin-left:10px;
+}
+#serchFlightForm>img{
+	vertical-align: middle;
+	margin-bottom: 5px;
+	width: 35px;
+	height: 35px;
+}
+.checkedserchFlight {
+	width: 180px;
+	height: 40px;
+	font-size: 20px;
+	border: 2px solid #ddd;
+	border-radius:8px;
+	background: url(/img/bg_select.png) no-repeat right 13px center;
+	background-color:lightgray;
+	text-align:center;
+	margin-top:20px;
+	-webkit-appearance: none;
+}
+#checkedDep_date{
+	width: 140px;
+	height: 40px;
+	font-size: 20px;
+	border: 2px solid #ddd;
+	border-radius:8px;
+	background-color:lightgray;
+	text-align:center;
+	margin-top:20px;
+	margin-right:10px;
+}
+#serchFlightBtn{
+	font-size: 20px;
+	height: 45px;
+	width:130px;
+	margin:15px;
+	background-color: lightgray;
+	border-radius: 4px;
+}
+#serchFlightBtn:hover{
+    background-color: gray;
+    cursor: pointer;
+}
+
 /* flight_form */
 .flight_form{
 	display:none;

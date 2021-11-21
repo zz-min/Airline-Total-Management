@@ -2,7 +2,7 @@ package com.web.atm.di.entity;
 
 public class Flight_Type {
 	private int sn; // Flight_Type 테이블 시퀀스
-	private String flightType; // Flight_Type 테이블 시퀀스
+	private String flightType; // Flight_Type 비행기명
 	private int airline_sn; // Airline 테이블 시퀀스
 	private int firstCalss_counting; // 일등석 좌석 수
 	private int economy_counting; // 이코노미 좌석 수

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -25,7 +24,7 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
 	<!-- JavaScript -->
-	<script src="/js/main.js?djk" defer></script>
+	<script src="/js/main.js" defer></script>
 	
 	<link href="/css/common.css?fX" rel="stylesheet" type="text/css"><!-- 공통 -->
 	<link href="/css/dialog.css" rel="stylesheet" type="text/css"><!-- 모든 다이알로그 공통 -->
@@ -80,11 +79,77 @@
 			<div id="imgContatiner">
 				<img id="img" src="/img/airport.jpg">
 			</div>
-			<div id="selectContainer"></div>
+			<div id="selectContainer">
+				<div id="serchFlightFormContainer">
+				<form id="serchFlightForm">
+					<label>항공사 : </label> 
+					<select name="checkedAirline" id="checkedAirline" class="checkedserchFlight">
+						<option value="none" style="opacity: 0.4">=== (선택) ===&nbsp&nbsp&nbsp</option>
+						<c:forEach var="i" begin="0" end="${fn:length(airlineNameList)-1}">
+							<option value="${airlineNameList[i]}">${airlineNameList[i]}&nbsp&nbsp&nbsp</option>
+						</c:forEach>
+					</select>
+					
+					<label>출발날짜 : </label> 
+					<input type="text" id="checkedDep_date" class="datepicker"/>
+					
+					<label>출발지 : </label> 
+					<select name="checkedOrigin" id="checkedOrigin" class="checkedserchFlight">
+						<option value="none" style="opacity: 0.4">=== (필수) ===&nbsp&nbsp&nbsp</option>
+						<c:forEach var="i" begin="0" end="${fn:length(airportNameList)-1}">
+							<option value="${airportNameList[i]}">${airportNameList[i]}&nbsp&nbsp&nbsp</option>
+						</c:forEach>
+					</select>
+					
+					<label>도착지 : </label> 
+					<select name="checkedDest" id="checkedDest" class="checkedserchFlight">
+						<option value="none" style="opacity: 0.4">=== (필수) ===&nbsp&nbsp&nbsp</option>
+						<c:forEach var="i" begin="0" end="${fn:length(airportNameList)-1}">
+							<option value="${airportNameList[i]}">${airportNameList[i]}&nbsp&nbsp&nbsp</option>
+						</c:forEach>
+					</select>
+					
+					<input type="submit" value="항공편 찾기" id="serchFlightBtn"/>
+				</form>
+				</div>
+			</div>
 		</div>
 		<!-- 항공편 조회 form -->
 		<div class="flight_form" style="background-color: pink">
-		
+			<%-- <div id="selectContainer">
+				<div id="serchFlightFormContainer">
+				<form id="serchFlightForm">
+					<label>항공사 : </label> 
+					<select name="checkedAirline" id="checkedAirline" class="checkedserchFlight">
+						<option value="none" style="opacity: 0.4">=== (선택) ===&nbsp&nbsp&nbsp</option>
+						<c:forEach var="i" begin="0" end="${fn:length(airlineNameList)-1}">
+							<option value="${airlineNameList[i]}">${airlineNameList[i]}&nbsp&nbsp&nbsp</option>
+						</c:forEach>
+					</select>
+					
+					<label>출발날짜 : </label> 
+					<input type="text" id="checkedDep_date" class="datepicker"/>
+					
+					<label>출발지 : </label> 
+					<select name="checkedOrigin" id="checkedOrigin" class="checkedserchFlight">
+						<option value="none" style="opacity: 0.4">=== (필수) ===&nbsp&nbsp&nbsp</option>
+						<c:forEach var="i" begin="0" end="${fn:length(airportNameList)-1}">
+							<option value="${airportNameList[i]}">${airportNameList[i]}&nbsp&nbsp&nbsp</option>
+						</c:forEach>
+					</select>
+					
+					<label>도착지 : </label> 
+					<select name="checkedDest" id="checkedDest" class="checkedserchFlight">
+						<option value="none" style="opacity: 0.4">=== (필수) ===&nbsp&nbsp&nbsp</option>
+						<c:forEach var="i" begin="0" end="${fn:length(airportNameList)-1}">
+							<option value="${airportNameList[i]}">${airportNameList[i]}&nbsp&nbsp&nbsp</option>
+						</c:forEach>
+					</select>
+					
+					<input type="submit" value="항공편 찾기" id="serchFlightBtn"/>
+				</form>
+				</div>
+			</div> --%>
 		</div>
 		
 		<!-- 회원가입 form -->

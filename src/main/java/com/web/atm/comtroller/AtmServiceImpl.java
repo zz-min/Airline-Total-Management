@@ -2,17 +2,21 @@ package com.web.atm.comtroller;
 
 import java.util.List;
 
+import com.web.atm.dao.AirlineDao;
 import com.web.atm.dao.UserDao;
+import com.web.atm.di.entity.Airline;
 import com.web.atm.di.entity.User;
 
 public class AtmServiceImpl implements AtmService {
 	private UserDao userDao = null;
+	private AirlineDao airlineDao = null;
 	
 	public AtmServiceImpl() {
 	}
 
-	public AtmServiceImpl(UserDao userDao) {
+	public AtmServiceImpl(UserDao userDao,AirlineDao airlineDao) {
 		this.userDao = userDao;
+		this.airlineDao = airlineDao;
 	}
 	
 	/* User Dao */
@@ -38,6 +42,31 @@ public class AtmServiceImpl implements AtmService {
 	@Override
 	public List<User> getUserList(String query) {
 		return null;
+	}
+	
+	/* Airline Dao */
+	@Override
+	public boolean insertAirline(Airline airline) {
+		return airlineDao.insertAirline(airline);
+	}
+	@Override
+	public boolean deleteAirline(Airline airline) {
+		return airlineDao.deleteAirline(airline);
+	}
+
+	@Override
+	public Airline getAirline(int sn) {
+		return airlineDao.getAirline(sn);
+	}
+
+	@Override
+	public List<Airline> getAirlineList(String query) {
+		return airlineDao.getAirlineList(query);
+	}
+
+	@Override
+	public List<String> getAirlineNameList(String query) {
+		return airlineDao.getAirlineNameList(query);
 	}
 
 	

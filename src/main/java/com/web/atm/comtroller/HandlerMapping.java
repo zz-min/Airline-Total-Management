@@ -4,12 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.web.atm.comtroller.Impl.AdminMainController;
-import com.web.atm.comtroller.Impl.ApiContentController;
+import com.web.atm.comtroller.Impl.ApiAdminController;
+import com.web.atm.comtroller.Impl.ApiFlightController;
+import com.web.atm.comtroller.Impl.ApiListFlightController;
 import com.web.atm.comtroller.Impl.ApiLoginController;
-import com.web.atm.comtroller.Impl.ApiScheduleController;
 import com.web.atm.comtroller.Impl.ApiUserController;
 import com.web.atm.comtroller.Impl.IndexController;
 import com.web.atm.comtroller.Impl.LoginMainController;
+import com.web.atm.comtroller.Impl.OpenApiController;
 
 public class HandlerMapping {
 	private Map<String, ControllerInterface> handlerMapper = null;
@@ -31,8 +33,11 @@ public class HandlerMapping {
 		 handlerMapper.put("/api/login", new ApiLoginController());
 		 
 		 handlerMapper.put("/api/users", new ApiUserController());
-		 handlerMapper.put("/api/admin", new ApiScheduleController());
-		 handlerMapper.put("/api/contents", new ApiContentController());
+		 handlerMapper.put("/api/admin", new ApiAdminController());
+		 handlerMapper.put("/api/flight", new ApiFlightController());
+		 handlerMapper.put("/api/listFlight", new ApiListFlightController());
+		 
+		 handlerMapper.put("/api/openapi", new OpenApiController());
 		 
 	}
 

@@ -1,28 +1,40 @@
 package com.web.atm.di.entity;
 
-public class Flight {
-	private int sn; // flight 테이블 시퀀스
+public class VIEW_FLIGHT_DETAIL {
+	private int flightSn; // flight 테이블 시퀀스
+	
 	private int airlineSn; // Airline 테이블 시퀀스
+	private String airlineId; // 항공사 아이디
+	private String airlineName; // 항공사 이름
+	
 	private int flight_typeSn; // flight_type 테이블 시퀀스
+	private int firstCalss_counting; // 일등석 좌석 수
+	private int economy_counting; // 이코노미 좌석 수
+	
 	private int avail_seat;//유효좌석수(일등석좌석수 + 이코노미좌석수 - 예약한 좌석수)
 	private String dep_time;//출발시간
 	private String arr_time;//도착시간
-	private String destination;//출발지
-	private String origin;//도착지
+	private String origin;//출발지
+	private String destination;//도착지
 	private int gate;// 게이트 번호
 	private int firstClass_fee;//일등석좌석 가격
 	private int economy_fee;//이코노미좌석 가격
 	
-	public Flight() {
+	public VIEW_FLIGHT_DETAIL(){
 		
 	}
 	
-	public Flight(int sn, int airlineSn, int flight_typeSn, int avail_seat, String dep_time, String arr_time,
+	public VIEW_FLIGHT_DETAIL(int flightSn, int airlineSn, String airlineId, String airlineName, int flight_typeSn,
+			int firstCalss_counting, int economy_counting, int avail_seat, String dep_time, String arr_time,
 			String destination, String origin, int gate, int firstClass_fee, int economy_fee) {
 		super();
-		this.sn = sn;
+		this.flightSn = flightSn;
 		this.airlineSn = airlineSn;
+		this.airlineId = airlineId;
+		this.airlineName = airlineName;
 		this.flight_typeSn = flight_typeSn;
+		this.firstCalss_counting = firstCalss_counting;
+		this.economy_counting = economy_counting;
 		this.avail_seat = avail_seat;
 		this.dep_time = dep_time;
 		this.arr_time = arr_time;
@@ -33,12 +45,12 @@ public class Flight {
 		this.economy_fee = economy_fee;
 	}
 
-	public int getSn() {
-		return sn;
+	public int getFlightSn() {
+		return flightSn;
 	}
 
-	public void setSn(int sn) {
-		this.sn = sn;
+	public void setFlightSn(int flightSn) {
+		this.flightSn = flightSn;
 	}
 
 	public int getAirlineSn() {
@@ -49,12 +61,44 @@ public class Flight {
 		this.airlineSn = airlineSn;
 	}
 
+	public String getAirlineId() {
+		return airlineId;
+	}
+
+	public void setAirlineId(String airlineId) {
+		this.airlineId = airlineId;
+	}
+
+	public String getAirlineName() {
+		return airlineName;
+	}
+
+	public void setAirlineName(String airlineName) {
+		this.airlineName = airlineName;
+	}
+
 	public int getFlight_typeSn() {
 		return flight_typeSn;
 	}
 
 	public void setFlight_typeSn(int flight_typeSn) {
 		this.flight_typeSn = flight_typeSn;
+	}
+
+	public int getFirstCalss_counting() {
+		return firstCalss_counting;
+	}
+
+	public void setFirstCalss_counting(int firstCalss_counting) {
+		this.firstCalss_counting = firstCalss_counting;
+	}
+
+	public int getEconomy_counting() {
+		return economy_counting;
+	}
+
+	public void setEconomy_counting(int economy_counting) {
+		this.economy_counting = economy_counting;
 	}
 
 	public int getAvail_seat() {
@@ -123,9 +167,14 @@ public class Flight {
 
 	@Override
 	public String toString() {
-		return "Flight [sn=" + sn + ", airlineSn=" + airlineSn + ", flight_typeSn=" + flight_typeSn + ", avail_seat="
-				+ avail_seat + ", dep_time=" + dep_time + ", arr_time=" + arr_time + ", destination=" + destination
-				+ ", origin=" + origin + ", gate=" + gate + ", firstClass_fee=" + firstClass_fee + ", economy_fee="
-				+ economy_fee + "]";
+		return "VIEW_FLIGHT_DETAIL [flightSn=" + flightSn + ", airlineSn=" + airlineSn + ", airlineId=" + airlineId
+				+ ", airlineName=" + airlineName + ", flight_typeSn=" + flight_typeSn + ", firstCalss_counting="
+				+ firstCalss_counting + ", economy_counting=" + economy_counting + ", avail_seat=" + avail_seat
+				+ ", dep_time=" + dep_time + ", arr_time=" + arr_time + ", destination=" + destination + ", origin="
+				+ origin + ", gate=" + gate + ", firstClass_fee=" + firstClass_fee + ", economy_fee=" + economy_fee
+				+ "]";
 	}
+	
+	
+	
 }
