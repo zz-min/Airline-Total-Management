@@ -3,20 +3,24 @@ package com.web.atm.comtroller;
 import java.util.List;
 
 import com.web.atm.dao.AirlineDao;
+import com.web.atm.dao.FlightDao;
 import com.web.atm.dao.UserDao;
 import com.web.atm.di.entity.Airline;
 import com.web.atm.di.entity.User;
+import com.web.atm.di.entity.VIEW_FLIGHT_DETAIL;
 
 public class AtmServiceImpl implements AtmService {
 	private UserDao userDao = null;
 	private AirlineDao airlineDao = null;
+	private FlightDao flightDao = null;
 	
 	public AtmServiceImpl() {
 	}
 
-	public AtmServiceImpl(UserDao userDao,AirlineDao airlineDao) {
+	public AtmServiceImpl(UserDao userDao,AirlineDao airlineDao, FlightDao flightDao) {
 		this.userDao = userDao;
 		this.airlineDao = airlineDao;
+		this.flightDao=flightDao;
 	}
 	
 	/* User Dao */
@@ -67,6 +71,13 @@ public class AtmServiceImpl implements AtmService {
 	@Override
 	public List<String> getAirlineNameList(String query) {
 		return airlineDao.getAirlineNameList(query);
+	}
+
+	
+	/* Fligh Dao */
+	@Override
+	public List<VIEW_FLIGHT_DETAIL> getFlightList(String query) {
+		return flightDao.getFlightList(query);
 	}
 
 	

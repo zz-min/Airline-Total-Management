@@ -6,7 +6,6 @@ import java.util.Map;
 import com.web.atm.comtroller.Impl.AdminMainController;
 import com.web.atm.comtroller.Impl.ApiAdminController;
 import com.web.atm.comtroller.Impl.ApiFlightController;
-import com.web.atm.comtroller.Impl.ApiListFlightController;
 import com.web.atm.comtroller.Impl.ApiLoginController;
 import com.web.atm.comtroller.Impl.ApiUserController;
 import com.web.atm.comtroller.Impl.IndexController;
@@ -20,22 +19,15 @@ public class HandlerMapping {
 		handlerMapper = new HashMap<String, ControllerInterface>();
 
 		handlerMapper.put("/main", new IndexController());
+		handlerMapper.put("/index", new IndexController());
 		handlerMapper.put("/main_login", new LoginMainController());
 		handlerMapper.put("/main_admin", new AdminMainController());
-		handlerMapper.put("/index", new IndexController());
-		/*
-		 * handlerMapper.put("/main", new IndexController());
-		 * 
-		 * handlerMapper.put("/main/studio", new MainController());
-		 * handlerMapper.put("/main/rental", new MainController());
-		 * handlerMapper.put("/main/consulting", new MainController());
-		 */
+
 		 handlerMapper.put("/api/login", new ApiLoginController());
 		 
 		 handlerMapper.put("/api/users", new ApiUserController());
 		 handlerMapper.put("/api/admin", new ApiAdminController());
 		 handlerMapper.put("/api/flight", new ApiFlightController());
-		 handlerMapper.put("/api/listFlight", new ApiListFlightController());
 		 
 		 handlerMapper.put("/api/openapi", new OpenApiController());
 		 

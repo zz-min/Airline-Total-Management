@@ -35,7 +35,7 @@
     height: 500px;
     margin: 0 auto;
 }
-#selectContainer{
+#selectContainer,#selectContainer_{
     background-color: var(--color-blue2);
     border-radius: 20px;
     width: 1300px;
@@ -45,20 +45,22 @@
     justify-content:center;
     margin: 0 auto;
 }
-#serchFlightFormContainer{
+#serchFlightFormContainer,#serchFlightFormContainer_{
 	margin:0 auto;
 }
-#serchFlightForm>label{
+#serchFlightForm>label,
+#serchFlightForm_>label{
 	font-size: 20px;
 	margin-left:10px;
 }
-#serchFlightForm>img{
+#serchFlightForm>img,
+#serchFlightForm_>img{
 	vertical-align: middle;
 	margin-bottom: 5px;
 	width: 35px;
 	height: 35px;
 }
-.checkedserchFlight {
+.checkedserchFlight{
 	width: 180px;
 	height: 40px;
 	font-size: 20px;
@@ -70,7 +72,7 @@
 	margin-top:20px;
 	-webkit-appearance: none;
 }
-#checkedDep_date{
+#checkedDep_date,#checkedDep_date_{
 	width: 140px;
 	height: 40px;
 	font-size: 20px;
@@ -81,7 +83,7 @@
 	margin-top:20px;
 	margin-right:10px;
 }
-#serchFlightBtn{
+#serchFlightBtn,#serchFlightBtn_{
 	font-size: 20px;
 	height: 45px;
 	width:130px;
@@ -89,7 +91,8 @@
 	background-color: lightgray;
 	border-radius: 4px;
 }
-#serchFlightBtn:hover{
+#serchFlightBtn:hover,
+#serchFlightBtn_:hover{
     background-color: gray;
     cursor: pointer;
 }

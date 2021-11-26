@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.web.atm.di.entity.Airline;
 import com.web.atm.di.entity.User;
+import com.web.atm.di.entity.VIEW_FLIGHT_DETAIL;
 
 public interface AtmService {
 	/* User Dao */
@@ -19,4 +20,7 @@ public interface AtmService {
 	Airline getAirline(int sn);
 	List<Airline> getAirlineList(String query);
 	List<String> getAirlineNameList(String query);
+	
+	/* Fligh Dao */
+	List<VIEW_FLIGHT_DETAIL> getFlightList(String query);
 }

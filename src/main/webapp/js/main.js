@@ -82,40 +82,61 @@ $(window).load(function() {
        
     //초기값을 오늘 날짜로 설정해줘야 합니다.
     $('.datepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후.
-	/*$("#serchFlightForm").on("submit",function(){
-		alert("d");
-		$(".main_form").hide();
-		$(".join_form").hide();
-		$(".flight_form").show();*/
-		//$("#main-nav1").click()
-		/*fetch("/api/openapi/getArprtList")
+	$("#serchFlightBtn_").on("click",function(){
+		var a1=$('select[name=checkedAirline_] option:selected').text().replace(/^\s+|\s+$/g, '');
+		var a2=$('#checkedDep_date_').val();
+		var a3=$('select[name=checkedOrigin_] option:selected').text().replace(/^\s+|\s+$/g, '');
+		var a4=$('select[name=checkedDest_] option:selected').text().replace(/^\s+|\s+$/g, '');
+		console.log("//"+a1+"//"+a2+"//"+a3+"//"+a4);
+		//x = x.replace(/^\s+|\s+$/g, '');// 앞과 뒤의 공백 제거하기 
+		var str=`/api/flight/list?
+				checkedAirline=${encodeURI(encodeURIComponent(a1))} &
+				checkedDate= ${a2}&
+				checkedOrigin= ${encodeURI(encodeURIComponent(a3))}&
+				checkedDest= ${encodeURI(encodeURIComponent(a4))}`
+		fetch(str)
 			.then(res => res.text())
-			.then(res => alert(res))
-			.then($("#main-nav1").click())*/
-		/*fetch('/api/flight', {// 항공편 조회 요청보내기
+			.then(res => console.log(res))
+		/*fetch('/api/flight/list', {// 항공편 조회 요청보내기
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json; charset=UTF-8"
 			},
 			body: JSON.stringify({
 				checkedAirline: $('select[name=checkedAirline] option:selected').text(),
-				userName: $('#checkedDep_date').val(),
+				checkedDate: $('#checkedDep_date').val(),
 				checkedOrigin: $('select[name=checkedOrigin] option:selected').text(),
 				checkedDest: $('select[name=checkedDest] option:selected').text()
 			}),
 			dataType: 'json'
 		})
-			.then(alert("항공권 조회가 시작되었습니다"))
-			.then($(".flight_form").show())
-			.then($(".main_form").hide())*/
-	/*});*/
-	$("#serchFlightBtn").on("click", function(){
-		alert("dff");
+			.then(res => res.text())
+			.then(res => console.log(res))
+			.then(alert("항공권 조회가 시작되었습니다d"))*/
+	});
+	
+	$("#serchFlightBtn").on("click", function(){ //메인화면에서 button클릭시
 		$(".main_form").hide();
 		$(".join_form").hide();
 		$(".flight_form").show();
+		$("#checkedAirline_").val($("#checkedAirline").val()).prop("selected",true);
+		$("#checkedDep_date_").val($("#checkedDep_date").val())
+		$("#checkedOrigin_").val($("#checkedOrigin").val()).prop("selected",true);
+		$("#checkedDest_").val($("#checkedDest").val()).prop("selected",true);
+		$("#serchFlightBtn_").click();
 	})
-	$("#loginZone").on("click", function() {
+	
+	$("#main-nav1").on("click", function() {//항공편조회 선택
+		$(".main_form").hide();
+		$(".join_form").hide();
+		$(".flight_form").show();
+	});
+	$("#main-nav2").on("click", function() {//회원가입 선택
+		$(".main_form").hide();
+		$(".flight_form").hide();
+		$(".join_form").show();
+	});
+	$("#loginZone").on("click", function() { //로그인버튼 클릭
 		userLoginDialog.dialog("open");
 	});
 	
@@ -139,17 +160,6 @@ $(window).load(function() {
 			.then(alert("회원가입이 되었습니다"))
 			.then(location.replace("/main"))
 			.catch(error => console.log(error))
-	});
-	
-	$("#main-nav1").on("click", function() {
-		$(".main_form").hide();
-		$(".join_form").hide();
-		$(".flight_form").show();
-	});
-	$("#main-nav2").on("click", function() {
-		$(".main_form").hide();
-		$(".flight_form").hide();
-		$(".join_form").show();
 	});
 	
 });

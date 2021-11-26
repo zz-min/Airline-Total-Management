@@ -69,7 +69,6 @@ public class AirlineJdbcDao implements AirlineDao {
 		List<Airline> airlineList=null;
 		String sql = "select * from AIRLINE";
 		sql = sql + (query != null && !query.equals("") ? " WHERE " + query : " ORDER BY sn");
-		System.out.println("getAirlineList함수 sql>>"+sql);
 		
 		try {
 			connect();
@@ -107,8 +106,6 @@ public class AirlineJdbcDao implements AirlineDao {
 		List<String> airlineNameList=null;
 		String sql = "select airlineName from AIRLINE";
 		sql = sql + (query != null && !query.equals("") ? " WHERE " + query : " ORDER BY sn");
-		System.out.println("getAirlineNameList함수 sql>>"+sql);
-		
 		try {
 			connect();
 			

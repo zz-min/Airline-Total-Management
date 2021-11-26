@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.web.atm.dao.AirlineDao;
+import com.web.atm.dao.FlightDao;
 import com.web.atm.dao.UserDao;
 import com.web.atm.dao.Impl.AirlineJdbcDao;
+import com.web.atm.dao.Impl.FlightJdbcDao;
 import com.web.atm.dao.Impl.UserJdbcDao;
 
 /**
@@ -27,6 +29,7 @@ public class DispatcherServlet extends HttpServlet {
 	private Properties props;
 	private AtmService athService = null;
 	private HandlerMapping mapper = null;   
+	private List<String> airlineNameList;
 	private String[] airport= {"김포","김해","제주","대구","울산","청주","양양","무안","광주","여수","사천","포항","군산","원주"};
     /**
      * @see HttpServlet#HttpServlet()
@@ -36,12 +39,11 @@ public class DispatcherServlet extends HttpServlet {
     
 	@Override
 	public void init() throws ServletException {
-		System.out.println("DispatcherServlet init");
+		System.out.println("ATM DispatcherServlet init");
     	props = new Properties();
     	 try {
     		 InputStream reader = getClass().getClassLoader().getResourceAsStream(PROPERTIES_FILE);
              props.load(reader);
-             System.out.println("db.properties파일 읽기 성공 > "+props.getProperty("jdbc.username"));
          } catch (IOException e) {
              System.out.println("Properties File Load Fail!");
              e.printStackTrace();
@@ -53,9 +55,11 @@ public class DispatcherServlet extends HttpServlet {
  		
  		UserDao userDao=new UserJdbcDao(driver, url, userName, password);
  		AirlineDao airlineDao=new AirlineJdbcDao(driver, url, userName, password);
+ 		FlightDao flightDao=new FlightJdbcDao(driver, url, userName, password);
  		
  		mapper = new HandlerMapping();
- 		athService= new AtmServiceImpl(userDao,airlineDao);
+ 		athService= new AtmServiceImpl(userDao,airlineDao,flightDao);
+ 		airlineNameList = athService.getAirlineNameList(null);
 	}
 	
 
@@ -72,10 +76,9 @@ public class DispatcherServlet extends HttpServlet {
 		String path = request.getRequestURI();
 		System.out.println("path >>" + path);
 		String viewName = null;
-		List<String> airlineNameList = athService.getAirlineNameList(null);
+		
 		request.setAttribute("airlineNameList", airlineNameList);
 		request.setAttribute("airportNameList", airport);
-		//List<String> airportList=
 
 		// step #2. data processing ==> dispatch request to controller
 		ControllerInterface handler = mapper.getHandler(path);

@@ -24,11 +24,11 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
 	<!-- JavaScript -->
-	<script src="/js/main.js" defer></script>
+	<script src="/js/main.js?84552" defer></script>
 	
-	<link href="/css/common.css?fX" rel="stylesheet" type="text/css"><!-- 공통 -->
+	<link href="/css/common.css" rel="stylesheet" type="text/css"><!-- 공통 -->
 	<link href="/css/dialog.css" rel="stylesheet" type="text/css"><!-- 모든 다이알로그 공통 -->
-	<link href="/css/main.css?d" rel="stylesheet" type="text/css"><!-- main화면 -->
+	<link href="/css/main.css?d5" rel="stylesheet" type="text/css"><!-- main화면 -->
 </head>
 <body>
 	<nav class="navbar">
@@ -91,10 +91,10 @@
 					</select>
 					
 					<label>출발날짜 : </label> 
-					<input type="text" id="checkedDep_date" class="datepicker"/>
+					<input type="text" id="checkedDep_date" class="datepicker" required="required"/>
 					
 					<label>출발지 : </label> 
-					<select name="checkedOrigin" id="checkedOrigin" class="checkedserchFlight">
+					<select name="checkedOrigin" id="checkedOrigin" class="checkedserchFlight" required="required">
 						<option value="none" style="opacity: 0.4">=== (필수) ===&nbsp&nbsp&nbsp</option>
 						<c:forEach var="i" begin="0" end="${fn:length(airportNameList)-1}">
 							<option value="${airportNameList[i]}">${airportNameList[i]}&nbsp&nbsp&nbsp</option>
@@ -102,25 +102,25 @@
 					</select>
 					
 					<label>도착지 : </label> 
-					<select name="checkedDest" id="checkedDest" class="checkedserchFlight">
+					<select name="checkedDest" id="checkedDest" class="checkedserchFlight" required="required">
 						<option value="none" style="opacity: 0.4">=== (필수) ===&nbsp&nbsp&nbsp</option>
 						<c:forEach var="i" begin="0" end="${fn:length(airportNameList)-1}">
 							<option value="${airportNameList[i]}">${airportNameList[i]}&nbsp&nbsp&nbsp</option>
 						</c:forEach>
 					</select>
 					
-					<input type="submit" value="항공편 찾기" id="serchFlightBtn"/>
+					<input type="button" value="항공편 찾기" id="serchFlightBtn"/>
 				</form>
 				</div>
 			</div>
 		</div>
 		<!-- 항공편 조회 form -->
-		<div class="flight_form" style="background-color: pink">
-			<%-- <div id="selectContainer">
-				<div id="serchFlightFormContainer">
-				<form id="serchFlightForm">
+		<div class="flight_form">
+			<div id="selectContainer_">			
+				<div id="serchFlightFormContainer_">
+				<form id="serchFlightForm_">
 					<label>항공사 : </label> 
-					<select name="checkedAirline" id="checkedAirline" class="checkedserchFlight">
+					<select name="checkedAirline_" id="checkedAirline_" class="checkedserchFlight">
 						<option value="none" style="opacity: 0.4">=== (선택) ===&nbsp&nbsp&nbsp</option>
 						<c:forEach var="i" begin="0" end="${fn:length(airlineNameList)-1}">
 							<option value="${airlineNameList[i]}">${airlineNameList[i]}&nbsp&nbsp&nbsp</option>
@@ -128,10 +128,10 @@
 					</select>
 					
 					<label>출발날짜 : </label> 
-					<input type="text" id="checkedDep_date" class="datepicker"/>
+					<input type="text" id="checkedDep_date_" class="datepicker"/>
 					
 					<label>출발지 : </label> 
-					<select name="checkedOrigin" id="checkedOrigin" class="checkedserchFlight">
+					<select name="checkedOrigin_" id="checkedOrigin_" class="checkedserchFlight">
 						<option value="none" style="opacity: 0.4">=== (필수) ===&nbsp&nbsp&nbsp</option>
 						<c:forEach var="i" begin="0" end="${fn:length(airportNameList)-1}">
 							<option value="${airportNameList[i]}">${airportNameList[i]}&nbsp&nbsp&nbsp</option>
@@ -139,17 +139,26 @@
 					</select>
 					
 					<label>도착지 : </label> 
-					<select name="checkedDest" id="checkedDest" class="checkedserchFlight">
+					<select name="checkedDest_" id="checkedDest_" class="checkedserchFlight">
 						<option value="none" style="opacity: 0.4">=== (필수) ===&nbsp&nbsp&nbsp</option>
 						<c:forEach var="i" begin="0" end="${fn:length(airportNameList)-1}">
 							<option value="${airportNameList[i]}">${airportNameList[i]}&nbsp&nbsp&nbsp</option>
 						</c:forEach>
 					</select>
 					
-					<input type="submit" value="항공편 찾기" id="serchFlightBtn"/>
+					<input type="button" value="항공편 찾기" id="serchFlightBtn_"/>
 				</form>
 				</div>
-			</div> --%>
+			</div>
+			<div>
+			<!-- ddd 
+			
+			
+			fdureljdp;l
+			
+			
+			-->
+			</div>
 		</div>
 		
 		<!-- 회원가입 form -->
