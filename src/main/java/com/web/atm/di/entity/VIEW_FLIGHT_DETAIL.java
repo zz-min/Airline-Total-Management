@@ -8,7 +8,7 @@ public class VIEW_FLIGHT_DETAIL {
 	private String airlineName; // 항공사 이름
 	
 	private int flight_typeSn; // flight_type 테이블 시퀀스
-	private int firstCalss_counting; // 일등석 좌석 수
+	private int firstClass_counting; // 일등석 좌석 수
 	private int economy_counting; // 이코노미 좌석 수
 	
 	private int avail_seat;//유효좌석수(일등석좌석수 + 이코노미좌석수 - 예약한 좌석수)
@@ -25,7 +25,7 @@ public class VIEW_FLIGHT_DETAIL {
 	}
 	
 	public VIEW_FLIGHT_DETAIL(int flightSn, int airlineSn, String airlineId, String airlineName, int flight_typeSn,
-			int firstCalss_counting, int economy_counting, int avail_seat, String dep_time, String arr_time,
+			int firstClass_counting, int economy_counting, int avail_seat, String dep_time, String arr_time,
 			String destination, String origin, int gate, int firstClass_fee, int economy_fee) {
 		super();
 		this.flightSn = flightSn;
@@ -33,7 +33,7 @@ public class VIEW_FLIGHT_DETAIL {
 		this.airlineId = airlineId;
 		this.airlineName = airlineName;
 		this.flight_typeSn = flight_typeSn;
-		this.firstCalss_counting = firstCalss_counting;
+		this.firstClass_counting = firstClass_counting;
 		this.economy_counting = economy_counting;
 		this.avail_seat = avail_seat;
 		this.dep_time = dep_time;
@@ -85,12 +85,12 @@ public class VIEW_FLIGHT_DETAIL {
 		this.flight_typeSn = flight_typeSn;
 	}
 
-	public int getFirstCalss_counting() {
-		return firstCalss_counting;
+	public int getFirstClass_counting() {
+		return firstClass_counting;
 	}
 
-	public void setFirstCalss_counting(int firstCalss_counting) {
-		this.firstCalss_counting = firstCalss_counting;
+	public void setFirstClass_counting(int firstClass_counting) {
+		this.firstClass_counting = firstClass_counting;
 	}
 
 	public int getEconomy_counting() {
@@ -168,8 +168,8 @@ public class VIEW_FLIGHT_DETAIL {
 	@Override
 	public String toString() {
 		return "VIEW_FLIGHT_DETAIL [flightSn=" + flightSn + ", airlineSn=" + airlineSn + ", airlineId=" + airlineId
-				+ ", airlineName=" + airlineName + ", flight_typeSn=" + flight_typeSn + ", firstCalss_counting="
-				+ firstCalss_counting + ", economy_counting=" + economy_counting + ", avail_seat=" + avail_seat
+				+ ", airlineName=" + airlineName + ", flight_typeSn=" + flight_typeSn + ", firstClass_counting="
+				+ firstClass_counting + ", economy_counting=" + economy_counting + ", avail_seat=" + avail_seat
 				+ ", dep_time=" + dep_time + ", arr_time=" + arr_time + ", destination=" + destination + ", origin="
 				+ origin + ", gate=" + gate + ", firstClass_fee=" + firstClass_fee + ", economy_fee=" + economy_fee
 				+ "]";

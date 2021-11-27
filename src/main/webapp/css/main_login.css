@@ -40,13 +40,99 @@
     height: 500px;
     margin: 0 auto;
 }
+#selectContainer,#selectContainer_{
+    background-color: var(--color-blue2);
+    border-radius: 20px;
+    width: 1300px;
+    height: 100px;
+    display:flex;
+    flex-flow:column;
+    justify-content:center;
+    margin: 0 auto;
+}
+#serchFlightFormContainer,#serchFlightFormContainer_{
+	margin:0 auto;
+}
+#serchFlightForm>label,
+#serchFlightForm_>label{
+	font-size: 20px;
+	margin-left:10px;
+}
+#serchFlightForm>img,
+#serchFlightForm_>img{
+	vertical-align: middle;
+	margin-bottom: 5px;
+	width: 35px;
+	height: 35px;
+}
+.checkedserchFlight{
+	width: 180px;
+	height: 40px;
+	font-size: 20px;
+	border: 2px solid #ddd;
+	border-radius:8px;
+	background: url(/img/bg_select.png) no-repeat right 13px center;
+	background-color:lightgray;
+	text-align:center;
+	margin-top:20px;
+	-webkit-appearance: none;
+}
+#checkedDep_date,#checkedDep_date_{
+	width: 140px;
+	height: 40px;
+	font-size: 20px;
+	border: 2px solid #ddd;
+	border-radius:8px;
+	background-color:lightgray;
+	text-align:center;
+	margin-top:20px;
+	margin-right:10px;
+}
+#serchFlightBtn,#serchFlightBtn_{
+	font-size: 20px;
+	height: 45px;
+	width:130px;
+	margin:15px;
+	background-color: lightgray;
+	border-radius: 4px;
+}
+#serchFlightBtn:hover,
+#serchFlightBtn_:hover{
+    background-color: gray;
+    cursor: pointer;
+}
 /* flight_form */
 .flight_form{
 	display:none;
 	width: 100%;
 	height: 100%;
 }
-
+#flightListTableContainer{
+	margin-top: 20px;
+}
+#flightListTable{
+	width: 80%;
+	text-align: center;
+	border: 3px;
+	margin: 0 auto;
+}
+#flightListTable>thead{
+	font-size: 22px;
+	height: 50px;
+	background-color:var(--color-blue1);
+}
+#flightListTable>tbody{
+	font-size: 18px;
+	font-weight:400;
+	background-color:var(--color-blue2);
+}
+#flightListTable>tbody>tr{
+	height: 40px;
+}
+#flightListTable th,#flightListTable td{
+	padding: 10px;
+	border: 2px solid white;
+}
 
 /* rsv_form */
 .rsv_form{
@@ -60,6 +146,10 @@
 	width: 100%;
 	height: 100%;
 }
+#myInfoTableContainer{
+	text-align: center;
+	margin-top: 100px;
+}
 #myInfoTable{
 	margin: 0 auto;
 }
@@ -69,9 +159,33 @@
 }
 #myInfoTable td,
 #myInfoTable th{
-	display: block;
-	font-size: 20px;
-	height: 50px;
+	display: flex;
+	justify-content:center;
+	align-items:center;
+	height: 50px;;
 	width:300px;
-	text-align: center;
+}
+#myInfoTable th{
+	background-color:gray;
+	font-size: 20px;
+	font-weight: bord;
+}
+#myInfoTable td{
+	background-color:lightgray;
+	font-size: 18px;
+	font-weight: 400;
+}
+#myInfoBtn,#d_myInfoBtn{
+	width:400px;
+	height: 50px;
+	font-size: 26px;
+	font-weight:bold;
+	background-color: white;
+	border-radius: 150px;
+	margin: 30px;
+}
+#myInfoBtn:hover,
+#d_myInfoBtn:hover{
+    background-color: gray;
+    cursor: pointer;
 }

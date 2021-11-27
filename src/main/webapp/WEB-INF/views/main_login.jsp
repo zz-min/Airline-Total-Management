@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인완료</title>
+<title>Main Page In Login</title>
 	<!-- font 사용 URL -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,11 +25,11 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
 	<!-- JavaScript -->
-	<script src="/js/main_login.js" defer></script>
+	<script type="text/javascript" src="/js/main_login.js?d5454d7" defer></script>
 	
 	<link href="/css/common.css" rel="stylesheet" type="text/css"><!-- 공통 -->
 	<link href="/css/dialog.css" rel="stylesheet" type="text/css"><!-- 모든 다이알로그 공통 -->
-	<link href="/css/main_login.css" rel="stylesheet" type="text/css"><!-- main화면 -->
+	<link href="/css/main_login.css?8q8" rel="stylesheet" type="text/css"><!-- main화면 -->
 </head>
 <body>
 	<nav class="navbar">
@@ -85,18 +85,103 @@
 			<div id="imgContatiner">
 				<img id="img" src="/img/airport.jpg">
 			</div>
-			<div id="selectContainer"></div>
+			<div id="selectContainer">
+				<div id="serchFlightFormContainer">
+				<form id="serchFlightForm">
+					<label>항공사 : </label> 
+					<select name="checkedAirline" id="checkedAirline" class="checkedserchFlight">
+						<option value="none" style="opacity: 0.4">=== (선택) ===&nbsp&nbsp&nbsp</option>
+						<c:forEach var="i" begin="0" end="${fn:length(airlineNameList)-1}">
+							<option value="${airlineNameList[i]}">${airlineNameList[i]}&nbsp&nbsp&nbsp</option>
+						</c:forEach>
+					</select>
+					
+					<label>출발날짜 : </label> 
+					<input type="text" id="checkedDep_date" class="datepicker" required="required"/>
+					
+					<label>출발지 : </label> 
+					<select name="checkedOrigin" id="checkedOrigin" class="checkedserchFlight" required="required">
+						<option value="none" style="opacity: 0.4">=== (필수) ===&nbsp&nbsp&nbsp</option>
+						<c:forEach var="i" begin="0" end="${fn:length(airportNameList)-1}">
+							<option value="${airportNameList[i]}">${airportNameList[i]}&nbsp&nbsp&nbsp</option>
+						</c:forEach>
+					</select>
+					
+					<label>도착지 : </label> 
+					<select name="checkedDest" id="checkedDest" class="checkedserchFlight" required="required">
+						<option value="none" style="opacity: 0.4">=== (필수) ===&nbsp&nbsp&nbsp</option>
+						<c:forEach var="i" begin="0" end="${fn:length(airportNameList)-1}">
+							<option value="${airportNameList[i]}">${airportNameList[i]}&nbsp&nbsp&nbsp</option>
+						</c:forEach>
+					</select>
+					
+					<input type="button" value="항공편 찾기" id="serchFlightBtn"/>
+				</form>
+				</div>
+			</div>
 		</div>
 		<!-- 항공편 조회 form -->
-		<div class="flight_form" style="background-color: pink">
-		
+		<div class="flight_form">
+			<div id="selectContainer_">
+				<div id="serchFlightFormContainer_">
+					<form id="serchFlightForm_">
+						<label>항공사 : </label> <select name="checkedAirline_"
+							id="checkedAirline_" class="checkedserchFlight">
+							<option value="none" style="opacity: 0.4">=== (선택)
+								===&nbsp&nbsp&nbsp</option>
+							<c:forEach var="i" begin="0"
+								end="${fn:length(airlineNameList)-1}">
+								<option value="${airlineNameList[i]}">${airlineNameList[i]}&nbsp&nbsp&nbsp</option>
+							</c:forEach>
+						</select> <label>출발날짜 : </label> <input type="text" id="checkedDep_date_"
+							class="datepicker" /> <label>출발지 : </label> <select
+							name="checkedOrigin_" id="checkedOrigin_"
+							class="checkedserchFlight">
+							<option value="none" style="opacity: 0.4">=== (필수)
+								===&nbsp&nbsp&nbsp</option>
+							<c:forEach var="i" begin="0"
+								end="${fn:length(airportNameList)-1}">
+								<option value="${airportNameList[i]}">${airportNameList[i]}&nbsp&nbsp&nbsp</option>
+							</c:forEach>
+						</select> <label>도착지 : </label> <select name="checkedDest_"
+							id="checkedDest_" class="checkedserchFlight">
+							<option value="none" style="opacity: 0.4">=== (필수)
+								===&nbsp&nbsp&nbsp</option>
+							<c:forEach var="i" begin="0"
+								end="${fn:length(airportNameList)-1}">
+								<option value="${airportNameList[i]}">${airportNameList[i]}&nbsp&nbsp&nbsp</option>
+							</c:forEach>
+						</select> <input type="button" value="항공편 찾기" id="serchFlightBtn_" />
+					</form>
+				</div>
+			</div>
+			<div id="flightListTableContainer">
+				<table id="flightListTable">
+					<thead>
+						<tr>
+							<th>항공편번호</th>
+							<th>항공사</th>
+							<th>출발지</th>
+							<th>출발시간</th>
+							<th>도착지</th>
+							<th>도착시간</th>
+							<th>일등석 요금</th>
+							<th>일반석 요금</th>
+							<th>예약하기</th>
+						</tr>
+					</thead>
+					<tbody>
+
+					</tbody>
+				</table>
+			</div>
 		</div>
 		<!-- 예약 조회 form -->
-		<div class="rsv_form" style="background-color: beige">
+		<div class="rsv_form" >
 		
 		</div>
 		<!-- 마이페이지 form -->
-		<div class="mypage_form" style="background-color: lightgray">
+		<div class="mypage_form">
 			<div id="myInfoTableContainer">
 				<table border="1" id="myInfoTable">
 					<tr>
@@ -120,11 +205,47 @@
 						<td>${sessionScope.user.getPassportNo()}</td>
 					</tr>
 				</table>
+				<input type="button" value="수정" id="myInfoBtn"/>
 			</div>
 		</div>
-		
 	</div>
-
+	
+	<!------------------------- 마이페이지 정보수정 dialog ------------------------->
+	<div id="changeInfo-dialog-form" class="dialog" title="정보수정">
+		<div class="changeInfoContainer">
+			<div id="changeInfo" style="display: inline-block">
+				<table border="1" id="myInfoTable">
+					<tr>
+						<th>고객번호</th>
+						<th>이름</th>
+						<th>아이디</th>
+						<th>비밀번호</th>
+						<th>전화번호</th>
+						<th>주소</th>
+						<th>생년월일</th>
+						<th>여권번호</th>
+					</tr>
+					<tr>
+						<td><input type="text" name="d_Sn" id="d_Sn" value="${sessionScope.user.getSn()}" readonly/></td>
+						<td><input type="text" name="d_UserName" id="d_UserName" value="${sessionScope.user.getUserName()}" required/></td>
+						<td><input type="text" name="d_UserId" id="d_UserId" value="${sessionScope.user.getUserId()}" required/></td>
+						<td><input type="password" name="d_UserPwd" id="d_UserPwd" value="${sessionScope.user.getUserId()}" readonly/></td>
+						<td><input type="text" name="d_Phone" id="d_Phone" value="${sessionScope.user.getPhone()}" required/></td>
+						<td><input type="text" name="d_Address" id="d_Address" value="${sessionScope.user.getAddress()}" /></td>
+						<td><input type="text" name="d_Birth" id="d_Birth" value="${sessionScope.user.getBirth()}" /></td>
+						<td><input type="text" name="d_PassportNo" id="d_PassportNo" value="${sessionScope.user.getPassportNo()}" required/></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div><!-- 마이페이지 정보수정 END-->
+	<!------------------------- 항공편 예약하기 dialog ------------------------->
+	<div id="booking-dialog-form" class="dialog" title="정보수정">
+		<div class="bookingContainer">
+			<h1>항공편 예약</h1>
+			<div id="bookingInfo"></div>
+		</div>
+	</div><!--항공편 예약하기 END-->
 	<!-------------------------- 뒷부분 ------------------------ -->
 	<div class="custom-shape-divider-bottom-1637404622">
     <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">

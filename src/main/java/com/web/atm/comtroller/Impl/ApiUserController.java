@@ -31,16 +31,12 @@ public class ApiUserController implements ControllerInterface {
 		
 		// GET
 		// /api/users - user전체목록반환
-		// /api/users/201796 - user 중 id = 201796 만 반환
+		// /api/users/2 - user 중  고객번호 = 2 만 반환
 		
 		// POST
 		// /api/users - user 하나 새로 생성
+		// /api/users/2 - user 중 고객번호 = 2인 유저 정보 수정
 
-		// UPDATE
-		// /api/users/201796 - user 중 id = 201796인 유저 정보 수정
-
-		// DELETE
-		// /api/users/201796 - user 중 id = 201796인 유저 삭제
 		if (temp.length == 3) {// /api/users
 			if (method.equals("GET")) {// users 전체목록 가져오기
 				System.out.println("모든 user정보 조회 - ApiUserController - GET");

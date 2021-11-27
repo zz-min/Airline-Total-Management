@@ -25,11 +25,16 @@ public class ApiFlightController implements ControllerInterface {
 		String[] temp=path.split("/");
 		String query=request.getQueryString();
 		System.out.println("ApiFlightController path >>"+path+"?"+query);
-		
+		String sub_Year=null; 
+		String sub_Month=null;
+		String sub_Day=null;
 		String checkedDate=request.getParameter("checkedDate");//2021-11-02
-		String sub_Year=checkedDate.substring(1,5);
-		String sub_Month=checkedDate.substring(6,8);
-		String sub_Day=checkedDate.substring(9,11);
+		if(checkedDate!=null) {
+			sub_Year=checkedDate.substring(1,5);
+			sub_Month=checkedDate.substring(6,8);
+			sub_Day=checkedDate.substring(9,11);
+		}
+		
 		String checkedAirline=request.getParameter("checkedAirline");
 		String checkedOrigin=request.getParameter("checkedOrigin");
 		String checkedDest=request.getParameter("checkedDest");
@@ -51,22 +56,35 @@ public class ApiFlightController implements ControllerInterface {
 		
 		// GET
 		// /api/flight - flight전체목록반환
+		// /api/flight/list - 항공사와 출발날짜 출발지 도착지로 항공편 리스트 조회
+		// /api/flight/2 - 항공편번호로 해당 항공편만 조회
 		// POST
 		// /api/flight?checkedAirline, checkedDate, checkedOrigin, checkedDest
 		if (temp.length == 3) {// /api/flight 
-			if (method.equals("GET")) {// flight 전체목록 가져오기
+			if (method.equals("GET")) {// flightf list 가져오기
 				System.out.println("모든 flight정보 조회 - ApiFlightController - GET");
+				
 			} else if (method.equals("POST")) {// 새로운 flight정보 생성하기
 				
 			}
 		}else if (temp.length > 3) {
+			String sql;
 			if(temp[3].equals("list")) {
-				String sql = "airlineName='"+checkedAirline.trim()+
+				if(checkedAirline==null) {
+					sql = "origin ='"+checkedOrigin.trim()+
+							"' AND destination='"+checkedDest.trim()+
+							"' AND year(dep_time) ="+sub_Year+
+							" AND month(dep_time) ="+sub_Month+
+							" AND day(dep_time) ="+sub_Day;
+				}else {
+					sql = "airlineName='"+checkedAirline.trim()+
 						"' AND origin ='"+checkedOrigin.trim()+
 						"' AND destination='"+checkedDest.trim()+
 						"' AND year(dep_time) ="+sub_Year+
 						" AND month(dep_time) ="+sub_Month+
 						" AND day(dep_time) ="+sub_Day;
+				}
+				
 				System.out.println(sql);
 				List<VIEW_FLIGHT_DETAIL> flightList = atmService.getFlightList(sql);
 				
@@ -75,7 +93,14 @@ public class ApiFlightController implements ControllerInterface {
 				} catch (JsonProcessingException e) {
 					e.printStackTrace();
 				}
-
+			}else {//api/flight/2 - 항공편번호로 해당 항공편만 조회
+				int flightSn=Integer.parseInt(temp[3]);
+				VIEW_FLIGHT_DETAIL vf=atmService.getFlight(flightSn);
+				try {
+					returnMassage = mapper.writeValueAsString(vf);
+				} catch (JsonProcessingException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		System.out.println(returnMassage);

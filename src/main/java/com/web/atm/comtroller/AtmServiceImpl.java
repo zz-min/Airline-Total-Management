@@ -80,6 +80,11 @@ public class AtmServiceImpl implements AtmService {
 		return flightDao.getFlightList(query);
 	}
 
+	@Override
+	public VIEW_FLIGHT_DETAIL getFlight(int sn) {
+		return flightDao.getFlight(sn);
+	}
+
 	
 
 }

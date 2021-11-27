@@ -89,32 +89,39 @@ $(window).load(function() {
 		var a4=$('select[name=checkedDest_] option:selected').text().replace(/^\s+|\s+$/g, '');
 		console.log("//"+a1+"//"+a2+"//"+a3+"//"+a4);
 		//x = x.replace(/^\s+|\s+$/g, '');// 앞과 뒤의 공백 제거하기 
-		var str=`/api/flight/list?
+		if($('select[name=checkedAirline_] option:selected').val()==='none'){
+			var url=`/api/flight/list?				
+				checkedDate= ${a2}&
+				checkedOrigin= ${encodeURI(encodeURIComponent(a3))}&
+				checkedDest= ${encodeURI(encodeURIComponent(a4))}`;
+		}else{
+			var url=`/api/flight/list?
 				checkedAirline=${encodeURI(encodeURIComponent(a1))} &
 				checkedDate= ${a2}&
 				checkedOrigin= ${encodeURI(encodeURIComponent(a3))}&
-				checkedDest= ${encodeURI(encodeURIComponent(a4))}`
-		fetch(str)
-			.then(res => res.text())
-			.then(res => console.log(res))
-		/*fetch('/api/flight/list', {// 항공편 조회 요청보내기
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json; charset=UTF-8"
-			},
-			body: JSON.stringify({
-				checkedAirline: $('select[name=checkedAirline] option:selected').text(),
-				checkedDate: $('#checkedDep_date').val(),
-				checkedOrigin: $('select[name=checkedOrigin] option:selected').text(),
-				checkedDest: $('select[name=checkedDest] option:selected').text()
-			}),
-			dataType: 'json'
-		})
-			.then(res => res.text())
-			.then(res => console.log(res))
-			.then(alert("항공권 조회가 시작되었습니다d"))*/
+				checkedDest= ${encodeURI(encodeURIComponent(a4))}`;
+		}
+		fetchData(url);
 	});
-	
+	async function fetchData(url){
+		const response = await fetch(url);
+		const json = await response.json();
+		if (json != null) {
+			for (var value of json) {
+					var str = "<tr id='sn"+value.flightSn+"'>"+
+					"<td>"+value.flightSn+"</td>"+
+					"<td>"+value.airlineName+"("+value.airlineId+")"+"</td>"+
+					"<td>"+value.origin+"</td>"+
+					"<td>"+value.arr_time.substring(11,16)+"</td>"+
+					"<td>"+value.destination+"</td>"+
+					"<td>"+value.dep_time.substring(11,16)+"</td>"+
+					"<td>"+value.firstClass_fee+"</td>"+
+					"<td>"+value.economy_fee+"</td></tr>";
+					//console.log(str);
+					$("#flightListTable > tbody:last").append(str);
+				}
+		}else alert("조회된 항공편이 없습니다!");
+	}
 	$("#serchFlightBtn").on("click", function(){ //메인화면에서 button클릭시
 		$(".main_form").hide();
 		$(".join_form").hide();

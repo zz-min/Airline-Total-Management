@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Main Pagee</title>
+<title>Main Page</title>
 	<!-- font 사용 URL -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,11 +24,11 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
 	<!-- JavaScript -->
-	<script src="/js/main.js?84552" defer></script>
+	<script src="/js/main.js?dd" defer></script>
 	
 	<link href="/css/common.css" rel="stylesheet" type="text/css"><!-- 공통 -->
 	<link href="/css/dialog.css" rel="stylesheet" type="text/css"><!-- 모든 다이알로그 공통 -->
-	<link href="/css/main.css?d5" rel="stylesheet" type="text/css"><!-- main화면 -->
+	<link href="/css/main.css?f" rel="stylesheet" type="text/css"><!-- main화면 -->
 </head>
 <body>
 	<nav class="navbar">
@@ -116,51 +116,60 @@
 		</div>
 		<!-- 항공편 조회 form -->
 		<div class="flight_form">
-			<div id="selectContainer_">			
+			<div id="selectContainer_">
 				<div id="serchFlightFormContainer_">
-				<form id="serchFlightForm_">
-					<label>항공사 : </label> 
-					<select name="checkedAirline_" id="checkedAirline_" class="checkedserchFlight">
-						<option value="none" style="opacity: 0.4">=== (선택) ===&nbsp&nbsp&nbsp</option>
-						<c:forEach var="i" begin="0" end="${fn:length(airlineNameList)-1}">
-							<option value="${airlineNameList[i]}">${airlineNameList[i]}&nbsp&nbsp&nbsp</option>
-						</c:forEach>
-					</select>
-					
-					<label>출발날짜 : </label> 
-					<input type="text" id="checkedDep_date_" class="datepicker"/>
-					
-					<label>출발지 : </label> 
-					<select name="checkedOrigin_" id="checkedOrigin_" class="checkedserchFlight">
-						<option value="none" style="opacity: 0.4">=== (필수) ===&nbsp&nbsp&nbsp</option>
-						<c:forEach var="i" begin="0" end="${fn:length(airportNameList)-1}">
-							<option value="${airportNameList[i]}">${airportNameList[i]}&nbsp&nbsp&nbsp</option>
-						</c:forEach>
-					</select>
-					
-					<label>도착지 : </label> 
-					<select name="checkedDest_" id="checkedDest_" class="checkedserchFlight">
-						<option value="none" style="opacity: 0.4">=== (필수) ===&nbsp&nbsp&nbsp</option>
-						<c:forEach var="i" begin="0" end="${fn:length(airportNameList)-1}">
-							<option value="${airportNameList[i]}">${airportNameList[i]}&nbsp&nbsp&nbsp</option>
-						</c:forEach>
-					</select>
-					
-					<input type="button" value="항공편 찾기" id="serchFlightBtn_"/>
-				</form>
+					<form id="serchFlightForm_">
+						<label>항공사 : </label> <select name="checkedAirline_"
+							id="checkedAirline_" class="checkedserchFlight">
+							<option value="none" style="opacity: 0.4">=== (선택)
+								===&nbsp&nbsp&nbsp</option>
+							<c:forEach var="i" begin="0"
+								end="${fn:length(airlineNameList)-1}">
+								<option value="${airlineNameList[i]}">${airlineNameList[i]}&nbsp&nbsp&nbsp</option>
+							</c:forEach>
+						</select> <label>출발날짜 : </label> <input type="text" id="checkedDep_date_"
+							class="datepicker" /> <label>출발지 : </label> <select
+							name="checkedOrigin_" id="checkedOrigin_"
+							class="checkedserchFlight">
+							<option value="none" style="opacity: 0.4">=== (필수)
+								===&nbsp&nbsp&nbsp</option>
+							<c:forEach var="i" begin="0"
+								end="${fn:length(airportNameList)-1}">
+								<option value="${airportNameList[i]}">${airportNameList[i]}&nbsp&nbsp&nbsp</option>
+							</c:forEach>
+						</select> <label>도착지 : </label> <select name="checkedDest_"
+							id="checkedDest_" class="checkedserchFlight">
+							<option value="none" style="opacity: 0.4">=== (필수)
+								===&nbsp&nbsp&nbsp</option>
+							<c:forEach var="i" begin="0"
+								end="${fn:length(airportNameList)-1}">
+								<option value="${airportNameList[i]}">${airportNameList[i]}&nbsp&nbsp&nbsp</option>
+							</c:forEach>
+						</select> <input type="button" value="항공편 찾기" id="serchFlightBtn_" />
+					</form>
 				</div>
 			</div>
-			<div>
-			<!-- ddd 
-			
-			
-			fdureljdp;l
-			
-			
-			-->
+			<div id="flightListTableContainer">
+				<table id="flightListTable">
+					<thead>
+						<tr>
+							<th>항공편번호</th>
+							<th>항공사</th>
+							<th>출발지</th>
+							<th>출발시간</th>
+							<th>도착지</th>
+							<th>도착시간</th>
+							<th>일등석 요금</th>
+							<th>일반석 요금</th>
+						</tr>
+					</thead>
+					<tbody>
+
+					</tbody>
+				</table>
 			</div>
 		</div>
-		
+
 		<!-- 회원가입 form -->
 		<div class="join_form" style="background-color: beige">
 			<div id="joinFormContainer">

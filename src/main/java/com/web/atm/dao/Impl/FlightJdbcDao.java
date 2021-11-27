@@ -73,8 +73,8 @@ public class FlightJdbcDao implements FlightDao {
 					vfd.setAirlineId(rs.getString("airlineId"));
 					vfd.setAirlineName(rs.getString("airlineName"));
 					vfd.setFlight_typeSn(rs.getInt("flight_type_sn"));
-					vfd.setFirstCalss_counting(rs.getInt("firstCalss_counting"));
-					vfd.setEconomy_counting(rs.getInt("ecnomy_counting"));
+					vfd.setFirstClass_counting(rs.getInt("firstClass_counting"));
+					vfd.setEconomy_counting(rs.getInt("economy_counting"));
 					vfd.setAvail_seat(rs.getInt("avail_seat"));
 					vfd.setDep_time(rs.getString("dep_time"));
 					vfd.setArr_time(rs.getString("arr_time"));
@@ -97,6 +97,46 @@ public class FlightJdbcDao implements FlightDao {
 				}
 		}
 		return flightList;
+	}
+
+	@Override
+	public VIEW_FLIGHT_DETAIL getFlight(int sn) {
+		VIEW_FLIGHT_DETAIL vfd=null;
+		String sql = "select * from VIEW_FLIGHT_DETAIL WHERE sn= ?";
+		System.out.println("getFlightList함수 sql>>"+sql);
+		try {
+			connect();
+			stmt =  conn.prepareStatement(sql);
+			stmt.setInt(1, sn);
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				vfd=new VIEW_FLIGHT_DETAIL();
+				vfd.setFlightSn(rs.getInt("sn"));
+				vfd.setAirlineSn(rs.getInt("airline_sn"));
+				vfd.setAirlineId(rs.getString("airlineId"));
+				vfd.setAirlineName(rs.getString("airlineName"));
+				vfd.setFlight_typeSn(rs.getInt("flight_type_sn"));
+				vfd.setFirstClass_counting(rs.getInt("firstClass_counting"));
+				vfd.setEconomy_counting(rs.getInt("economy_counting"));
+				vfd.setAvail_seat(rs.getInt("avail_seat"));
+				vfd.setDep_time(rs.getString("dep_time"));
+				vfd.setArr_time(rs.getString("arr_time"));
+				vfd.setDestination(rs.getString("destination"));
+				vfd.setOrigin(rs.getString("origin"));
+				vfd.setGate(rs.getInt("gate"));
+				vfd.setFirstClass_fee(rs.getInt("firstClass_fee"));
+				vfd.setEconomy_fee(rs.getInt("economy_fee"));
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+				try {
+					disconnect();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		return vfd;
 	}
 
 }

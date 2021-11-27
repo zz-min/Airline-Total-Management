@@ -23,4 +23,5 @@ public interface AtmService {
 	
 	/* Fligh Dao */
 	List<VIEW_FLIGHT_DETAIL> getFlightList(String query);
+	VIEW_FLIGHT_DETAIL getFlight(int sn);
 }
