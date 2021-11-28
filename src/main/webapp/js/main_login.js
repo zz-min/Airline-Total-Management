@@ -13,8 +13,8 @@ $(function() {
 	var userInfoDialog,bookingDialog;
 	userInfoDialog = $("#changeInfo-dialog-form").dialog({
 		autoOpen: false,//페이지 로드시 다이얼로그가 자동으로 열리는 것 방지
-		height: 550,
-		width: 700,
+		height: 150,
+		width: 200,
 		modal: true,//최상위에 다이알로그 표시
 		resizable: false,//창크기 조절할 수 없도록 설정
 		buttons: {
@@ -28,8 +28,8 @@ $(function() {
 	});
 	bookingDialog = $("#booking-dialog-form").dialog({
 		autoOpen: false,//페이지 로드시 다이얼로그가 자동으로 열리는 것 방지
-		height: 250,
-		width: 300,
+		height: 400,
+		width: 550,
 		modal: true,//최상위에 다이알로그 표시
 		resizable: false,//창크기 조절할 수 없도록 설정
 		buttons: {
@@ -71,7 +71,19 @@ $(function() {
 			.then(alert("항공권 조회가 시작되었습니다d"))*/
 	}
 	function booking(){
-		
+		fetch('/api/flightReq', {// 항공편 예약 POST요청보내기 
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json; charset=UTF-8"
+			},
+			body: JSON.stringify({
+				checkedAirline: $('select[name=checkedAirline] option:selected').text(),
+				checkedDate: $('#checkedDep_date').val(),
+				checkedOrigin: $('select[name=checkedOrigin] option:selected').text(),
+				checkedDest: $('select[name=checkedDest] option:selected').text()
+			}),
+			dataType: 'json'
+		})
 	}
 
 	$(".datepicker").datepicker({

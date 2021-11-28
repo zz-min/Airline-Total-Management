@@ -28,9 +28,9 @@ public class HandlerMapping {
 		 handlerMapper.put("/api/users", new ApiUserController());
 		 handlerMapper.put("/api/admin", new ApiAdminController());
 		 handlerMapper.put("/api/flight", new ApiFlightController());
+		 handlerMapper.put("/api/flightReq", new ApiFlightReqController());
 		 
-		 handlerMapper.put("/api/openapi", new OpenApiController());
-		 
+		 //handlerMapper.put("/api/openapi", new OpenApiController());
 	}
 
 	public ControllerInterface getHandler(String path) {
