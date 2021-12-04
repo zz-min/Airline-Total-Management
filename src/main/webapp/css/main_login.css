@@ -133,13 +133,87 @@
 	padding: 10px;
 	border: 2px solid white;
 }
+/* booking_form */
+.booking_form{
+	display:none;
+	width: 100%;
+	height: 100%;
+}
+.booking_form > h1{
+	text-align: center;
+	margin: 30px;
+}
 
+#bookingTable1,#bookingTable2{
+	width: 80%;
+	text-align: center;
+	border: 3px;
+	margin: 0 auto;
+}
+#bookingTable1>thead,
+#bookingTable2>thead{
+	font-size: 22px;
+	height: 50px;
+	background-color:var(--color-blue1);
+}
+#bookingTable1>tbody,
+#bookingTable2>tbody{
+	font-size: 18px;
+	font-weight:400;
+	background-color:var(--color-blue2);
+}
+#bookingTable1>tbody>tr,
+#bookingTable2>tbody>tr{
+	height: 40px;
+}
+#bookingTable1 th,#bookingTable1 td,
+#bookingTable2 th,#bookingTable2 td{
+	padding: 10px;
+	border: 2px solid white;
+}
+.buttonContatiner{
+	text-align: center;
+}
+#seatForm{
+	display: flex;
+	margin:0 auto;
+	width: 1000px;
+	height: 400px;
+}
+.fContainer{
+	display: flex;
+	flex: 1;
+}
+.eContainer{
+	display: flex;
+	flex: 5;	
+}
+.seatBoxLine{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height:100%;
+}
+.seatBox1{
+	width: 100%;
+	height:100%;
+	text-align:center;
+	border: 2px black solid;
+	background-color: #008040;
+}
+.seatBox0{
+	width: 100%;
+	height:100%;
+	border: 2px black solid;
+	background-color: white;
+}
 /* rsv_form */
 .rsv_form{
 	display:none;
 	width: 100%;
 	height: 100%;
 }
+
 /* mypage_form */
 .mypage_form{
 	display:none;

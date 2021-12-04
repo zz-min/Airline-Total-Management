@@ -1,6 +1,31 @@
+/**
+ * 0. @projectName : Airline-Total-Management  항공 예약 관리시스템 - 비행어때?
+ * 1. @fileName : UserDo.java
+ * 2. @package : com.web.atm.di.entity
+ * 3. @comment :
+ * 4. @author : JIMIN
+ * 5. @since : 2021. 12. 4. 오후 2:12:00
+ * 6. @version : V1.0
+ * 7. @see :
+ *                    이름     : 일자          : 근거자료   : 변경내용
+ *                   ------------------------------------------------------
+ *                    JIMIN : 2021. 12. 4. :            : 신규 개발.
+ */
 package com.web.atm.di.entity;
 
-public class User {	
+/** Class
+ * 
+ * 
+ * <PRE>
+ * @className : UserDo
+ * @fileName  : UserDo.java
+ * @package   : com.web.atm.di.entity
+ * @comment   :
+ * @author    : JIMIN
+ * @since     : 2021. 12. 4. 오후 2:12:00
+ * </PRE>
+ */
+public class UserDo {
 	private int sn; // User 테이블 시퀀스
 	private String userId; // 유저 아이디
 	private String userPwd; // 유저 비밀번호
@@ -10,11 +35,11 @@ public class User {
 	private String birth; // 유저 생년월일
 	private String passportNo; // 유저 여권번호
 	
-	public User() {
+	public UserDo() {
 		
 	}
 	
-	public User(int sn, String userId, String userPwd, String userName, String phone, String address, String birth,
+	public UserDo(int sn, String userId, String userPwd, String userName, String phone, String address, String birth,
 			String passportNo) {
 		super();
 		this.sn = sn;
@@ -96,6 +121,5 @@ public class User {
 		return "User [sn=" + sn + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName + ", phone="
 				+ phone + ", address=" + address + ", birth=" + birth + ", passportNo=" + passportNo + "]";
 	}
-	
-	
+
 }

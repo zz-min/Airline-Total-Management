@@ -22,15 +22,25 @@ import com.web.atm.dao.Impl.UserJdbcDao;
 /**
  * Servlet implementation class DispatcherServlet
  */
+
+/**
+ * @author JIMIN
+ * <PRE>
+ * 1. ClassName : 
+ * 2. FileName  : DispatcherServlet.java
+ * 3. Package  : com.web.atm.comtroller
+ * 4. Comment  :
+ * 5. 작성자   : JIMIN
+ * 6. 작성일   : 2021. 12. 4. 오후 1:32:39
+ * </PRE>
+ */
 @WebServlet("/")
 public class DispatcherServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String PROPERTIES_FILE = "db.properties";
 	private Properties props;
-	private AtmService athService = null;
-	private HandlerMapping mapper = null;   
-	private List<String> airlineNameList;
-	private String[] airport= {"김포","김해","제주","대구","울산","청주","양양","무안","광주","여수","사천","포항","군산","원주"};
+	private AtmService atmService = null;
+	private HandlerMapping mapper = null;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -58,8 +68,8 @@ public class DispatcherServlet extends HttpServlet {
  		FlightDao flightDao=new FlightJdbcDao(driver, url, userName, password);
  		
  		mapper = new HandlerMapping();
- 		athService= new AtmServiceImpl(userDao,airlineDao,flightDao);
- 		airlineNameList = athService.getAirlineNameList(null);
+ 		atmService= new AtmServiceImpl(userDao,airlineDao,flightDao);
+ 		
 	}
 	
 
@@ -77,23 +87,21 @@ public class DispatcherServlet extends HttpServlet {
 		System.out.println("path >>" + path);
 		String viewName = null;
 		
-		request.setAttribute("airlineNameList", airlineNameList);
-		request.setAttribute("airportNameList", airport);
+
 
 		// step #2. data processing ==> dispatch request to controller
 		ControllerInterface handler = mapper.getHandler(path);
 		if (path.contains("api")) {// REST API 기술
-			String data = handler.handleRequest(request, response, athService);
+			String data = handler.handleRequest(request, response, atmService);
 			
 			// step #3. output processing results
 			response.setContentType("text/html;charset=UTF-8");
 			response.getWriter().write(data);
 
 		} else {//페이지 이동
-			//f()
 			if (handler != null) {
 				//session이 있거나 cookie가 존재하면 넘어가기 -> 아니라면 알람띄우고 메인페이지
-				viewName = handler.handleRequest(request, response, athService);
+				viewName = handler.handleRequest(request, response, atmService);
 			}
 			// step #3. output processing results
 			if (viewName == null) {

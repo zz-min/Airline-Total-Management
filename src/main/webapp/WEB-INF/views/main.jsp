@@ -1,3 +1,4 @@
+<!-- /Airline-Total-Management/src/main/webapp/WEB-INF/views/main.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -24,11 +25,11 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
 	<!-- JavaScript -->
-	<script src="/js/main.js?dd" defer></script>
+	<script src="/js/main.js?d85dd" defer></script>
 	
 	<link href="/css/common.css" rel="stylesheet" type="text/css"><!-- 공통 -->
-	<link href="/css/dialog.css" rel="stylesheet" type="text/css"><!-- 모든 다이알로그 공통 -->
-	<link href="/css/main.css?f" rel="stylesheet" type="text/css"><!-- main화면 -->
+	<link href="/css/dialog.css?5" rel="stylesheet" type="text/css"><!-- 모든 다이알로그 공통 -->
+	<link href="/css/main.css?fD" rel="stylesheet" type="text/css"><!-- main화면 -->
 </head>
 <body>
 	<nav class="navbar">
@@ -227,6 +228,12 @@
 	<div id="user-login-dialog-form" class="dialog" title="로그인">
 		<div class="login_property">
 			<div id="loginPropertyLeft" style="display: inline-block">
+				<div class="selectType">
+					<input type="radio" name="selectType" id="adminTypeLabel" value="admin" required/>
+					<label for="adminType" class="adminType">&nbsp관리자 &nbsp </label> 
+					<input type="radio" name="selectType" id="userTypeLabel" value="user" />
+					<label for="userType" class="userType">&nbsp고객&nbsp </label> 
+				</div>
 				<div class="inputText">
 					<label for="id" class="idLabel">&nbsp아이디 :&nbsp </label> 
 					<input type="text" name="id" id="id"

@@ -17,15 +17,17 @@ $(window).load(function() {
 	
 	userLoginDialog = $("#user-login-dialog-form").dialog({
 		autoOpen: false,//페이지 로드시 다이얼로그가 자동으로 열리는 것 방지
-		height: 250,
-		width: 450,
+		height: 300,
+		width: 500,
 		modal: true,//최상위에 다이알로그 표시
 		resizable: false,//창크기 조절할 수 없도록 설정
 		buttons: {
-			"확인": function() {
-				userLoginCheckLength();
+			"로그인하기": function() {
+				if($('input[name="selectType"]:checked').val()!=undefined){
+					lginCheckLength();
+				}else alert("유형을 선택해주세요");
 			},
-			"취소": function() {
+			"돌아가기": function() {
 				userLoginDialog.dialog("close");
 			}
 		},
@@ -34,9 +36,9 @@ $(window).load(function() {
 		}
 	});
 	
-	function userLoginCheckLength() {//로그인 요청시 들어오는 함수
+	function lginCheckLength() {//로그인 요청시 들어오는 함수
 		userLoginField.removeClass("ui-state-error"); //에러 없애기
-		if (userLoginField.val().length > 15 || userLoginField.val().length < 5) {
+		if (userLoginField.val().length > 15 || userLoginField.val().length < 2) {
 			//false - ID,PWD 재요청
 			userLoginField.addClass("ui-state-error");
 			alert("아이디와 비밀번호를 다시 확인해 주세요.");
@@ -44,17 +46,31 @@ $(window).load(function() {
 			//true - 로그인 유효성 검사
 			const userId = btoa($("#id").val());//base64 인코딩
 			const userPwd = btoa($("#pwd").val());
-			var url = `/api/login/user?id=${userId}&pwd=${userPwd}`;// 로그인 요청보내기
-			loginFetch(url, userId, userPwd);
+			if($('input[name="selectType"]:checked').val()=='user'){//일반 사용자 로그인
+				userLoginFetch(`/api/login/user?id=${userId}&pwd=${userPwd}`);
+			}else {//관리자 로그인
+				adminLoginFetch(`/api/login/admin?id=${userId}&pwd=${userPwd}`);	
+			}
 		}
 	}
-	
-	function loginFetch(url, id, pwd) {//GET메소드
+	function userLoginFetch(url) {//GET메소드 - 일반 USER
 		fetch(url)
 			.then(res => res.text())
 			.then(res => {
 				if (res == 'true') {
 					document.location.href="/main_login";
+				} else{
+					userLoginField.addClass("ui-state-error");
+					alert("아이디와 비밀번호를 다시 확인해 주세요.");
+				}  
+			});
+	}
+	function adminLoginFetch(url) {//GET메소드 - 관리자 ADMIN
+		fetch(url)
+			.then(res => res.text())
+			.then(res => {
+				if (res == 'true') {
+					document.location.href="/main_admin";
 				} else{
 					userLoginField.addClass("ui-state-error");
 					alert("아이디와 비밀번호를 다시 확인해 주세요.");

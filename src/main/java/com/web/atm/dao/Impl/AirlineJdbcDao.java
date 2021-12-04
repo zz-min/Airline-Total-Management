@@ -9,8 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.web.atm.dao.AirlineDao;
-import com.web.atm.di.entity.Airline;
-import com.web.atm.di.entity.User;
+import com.web.atm.di.entity.AirlineDo;
 
 public class AirlineJdbcDao implements AirlineDao {
 	private String driver;
@@ -48,25 +47,50 @@ public class AirlineJdbcDao implements AirlineDao {
 			conn = null;
 		}
 	}
+	@Override
+	public boolean adminLoginAvailability(String id, String pwd) {
+		boolean TF=false;
+		String sql = "select * from AIRLINE where airlineId = ? AND airlinePwd = ?";
+		System.out.println("adminLoginAvailability함수 sql>>"+sql);
+		try {
+			connect();
+			stmt =  conn.prepareStatement(sql);
+			stmt.setString(1, id);
+			stmt.setString(2, pwd);
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				TF=true;
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+				try {
+					disconnect();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		return TF;
+	}
 
 	@Override
-	public boolean insertAirline(Airline airline) {
+	public boolean insertAirline(AirlineDo AirlineDo) {
 		return false;
 	}
 
 	@Override
-	public boolean deleteAirline(Airline airline) {
+	public boolean deleteAirline(AirlineDo AirlineDo) {
 		return false;
 	}
 
 	@Override
-	public Airline getAirline(int sn) {
+	public AirlineDo getAirline(int sn) {
 		return null;
 	}
 
 	@Override
-	public List<Airline> getAirlineList(String query) {
-		List<Airline> airlineList=null;
+	public List<AirlineDo> getAirlineList(String query) {
+		List<AirlineDo> AirlineDoList=null;
 		String sql = "select * from AIRLINE";
 		sql = sql + (query != null && !query.equals("") ? " WHERE " + query : " ORDER BY sn");
 		
@@ -76,17 +100,17 @@ public class AirlineJdbcDao implements AirlineDao {
 			stmt =  conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			if (rs.isBeforeFirst()) {
-				airlineList=new ArrayList<Airline>();
+				AirlineDoList=new ArrayList<AirlineDo>();
 				
 				while(rs.next()) {
-					Airline airline=new Airline();
-					airline.setSn(rs.getInt("sn"));
-					airline.setAirlineId(rs.getString("airlineId"));
-					airline.setAirlinePwd(rs.getString("airlinePwd"));
-					airline.setAirlineName(rs.getString("airlineName"));
-					airline.setPhone(rs.getString("phone"));
-					airline.setAddress(rs.getString("address"));
-					airlineList.add(airline);
+					AirlineDo AirlineDo=new AirlineDo();
+					AirlineDo.setSn(rs.getInt("sn"));
+					AirlineDo.setAirlineId(rs.getString("airlineId"));
+					AirlineDo.setAirlinePwd(rs.getString("airlinePwd"));
+					AirlineDo.setAirlineName(rs.getString("airlineName"));
+					AirlineDo.setPhone(rs.getString("phone"));
+					AirlineDo.setAddress(rs.getString("address"));
+					AirlineDoList.add(AirlineDo);
 				}
 			}
 		} catch (ClassNotFoundException | SQLException e) {
@@ -98,12 +122,12 @@ public class AirlineJdbcDao implements AirlineDao {
 					e.printStackTrace();
 				}
 		}
-		return airlineList;
+		return AirlineDoList;
 	}
 
 	@Override
 	public List<String> getAirlineNameList(String query) {
-		List<String> airlineNameList=null;
+		List<String> AirlineDoNameList=null;
 		String sql = "select airlineName from AIRLINE";
 		sql = sql + (query != null && !query.equals("") ? " WHERE " + query : " ORDER BY sn");
 		try {
@@ -112,10 +136,10 @@ public class AirlineJdbcDao implements AirlineDao {
 			stmt =  conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			if (rs.isBeforeFirst()) {
-				airlineNameList=new ArrayList<String>();
+				AirlineDoNameList=new ArrayList<String>();
 				while(rs.next()) {
 					String str=rs.getString("airlineName");
-					airlineNameList.add(str);
+					AirlineDoNameList.add(str);
 				}
 			}
 		} catch (ClassNotFoundException | SQLException e) {
@@ -127,6 +151,7 @@ public class AirlineJdbcDao implements AirlineDao {
 					e.printStackTrace();
 				}
 		}
-		return airlineNameList;
+		return AirlineDoNameList;
 	}
+
 }

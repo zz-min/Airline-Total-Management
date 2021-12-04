@@ -1,7 +1,32 @@
+/**
+ * 0. @projectName : Airline-Total-Management  항공 예약 관리시스템 - 비행어때?
+ * 1. @fileName : ViewFlightDetailDo.java
+ * 2. @package : com.web.atm.di.entity
+ * 3. @comment :
+ * 4. @author : JIMIN
+ * 5. @since : 2021. 12. 4. 오후 2:15:40
+ * 6. @version : V1.0
+ * 7. @see :
+ *                    이름     : 일자          : 근거자료   : 변경내용
+ *                   ------------------------------------------------------
+ *                    JIMIN : 2021. 12. 4. :            : 신규 개발.
+ */
 package com.web.atm.di.entity;
 
-public class VIEW_FLIGHT_DETAIL {
-	private int flightSn; // flight 테이블 시퀀스
+/** Class
+ * 
+ * 
+ * <PRE>
+ * @className : ViewFlightDetailDo
+ * @fileName  : ViewFlightDetailDo.java
+ * @package   : com.web.atm.di.entity
+ * @comment   :
+ * @author    : JIMIN
+ * @since     : 2021. 12. 4. 오후 2:15:40
+ * </PRE>
+ */
+public class ViewFlightDetailDo {
+private int flightSn; // flight 테이블 시퀀스
 	
 	private int airlineSn; // Airline 테이블 시퀀스
 	private String airlineId; // 항공사 아이디
@@ -20,14 +45,13 @@ public class VIEW_FLIGHT_DETAIL {
 	private int firstClass_fee;//일등석좌석 가격
 	private int economy_fee;//이코노미좌석 가격
 	
-	public VIEW_FLIGHT_DETAIL(){
+	public ViewFlightDetailDo(){
 		
 	}
 	
-	public VIEW_FLIGHT_DETAIL(int flightSn, int airlineSn, String airlineId, String airlineName, int flight_typeSn,
+	public ViewFlightDetailDo(int flightSn, int airlineSn, String airlineId, String airlineName, int flight_typeSn,
 			int firstClass_counting, int economy_counting, int avail_seat, String dep_time, String arr_time,
 			String destination, String origin, int gate, int firstClass_fee, int economy_fee) {
-		super();
 		this.flightSn = flightSn;
 		this.airlineSn = airlineSn;
 		this.airlineId = airlineId;
@@ -174,7 +198,5 @@ public class VIEW_FLIGHT_DETAIL {
 				+ origin + ", gate=" + gate + ", firstClass_fee=" + firstClass_fee + ", economy_fee=" + economy_fee
 				+ "]";
 	}
-	
-	
-	
+
 }

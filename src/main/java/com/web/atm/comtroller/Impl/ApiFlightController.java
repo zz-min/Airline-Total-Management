@@ -1,3 +1,16 @@
+/**
+ * 0. @projectName : Airline-Total-Management  항공 예약 관리시스템 - 비행어때?
+ * 1. @fileName : ApiFlightController.java
+ * 2. @package : com.web.atm.comtroller.Impl
+ * 3. @comment :
+ * 4. @author : JIMIN
+ * 5. @since : 2021. 12. 4. 오후 3:40:39
+ * 6. @version : V1.0
+ * 7. @see :
+ *                    이름     : 일자          : 근거자료   : 변경내용
+ *                   ------------------------------------------------------
+ *                    JIMIN : 2021. 12. 4. :            : 신규 개발.
+ */
 package com.web.atm.comtroller.Impl;
 
 import java.io.UnsupportedEncodingException;
@@ -11,8 +24,20 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.web.atm.comtroller.AtmService;
 import com.web.atm.comtroller.ControllerInterface;
-import com.web.atm.di.entity.VIEW_FLIGHT_DETAIL;
+import com.web.atm.di.entity.ViewFlightDetailDo;
 
+/** Class
+ * 
+ * 
+ * <PRE>
+ * @className : ApiFlightController
+ * @fileName  : ApiFlightController.java
+ * @package   : com.web.atm.comtroller.Impl
+ * @comment   :
+ * @author    : JIMIN
+ * @since     : 2021. 12. 4. 오후 4:09:26
+ * </PRE>
+ */
 public class ApiFlightController implements ControllerInterface {
 
 	@Override
@@ -86,7 +111,7 @@ public class ApiFlightController implements ControllerInterface {
 				}
 				
 				System.out.println(sql);
-				List<VIEW_FLIGHT_DETAIL> flightList = atmService.getFlightList(sql);
+				List<ViewFlightDetailDo> flightList = atmService.getFlightList(sql);
 				
 				try {
 					returnMassage = mapper.writeValueAsString(flightList);
@@ -95,7 +120,7 @@ public class ApiFlightController implements ControllerInterface {
 				}
 			}else {//api/flight/2 - 항공편번호로 해당 항공편만 조회
 				int flightSn=Integer.parseInt(temp[3]);
-				VIEW_FLIGHT_DETAIL vf=atmService.getFlight(flightSn);
+				ViewFlightDetailDo vf=atmService.getFlight(flightSn);
 				try {
 					returnMassage = mapper.writeValueAsString(vf);
 				} catch (JsonProcessingException e) {

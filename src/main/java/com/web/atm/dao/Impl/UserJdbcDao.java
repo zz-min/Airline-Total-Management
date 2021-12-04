@@ -1,3 +1,16 @@
+/**
+ * 0. @projectName : Airline-Total-Management  항공 예약 관리시스템 - 비행어때?
+ * 1. @fileName : UserJdbcDao.java
+ * 2. @package : com.web.atm.dao.Impl
+ * 3. @comment :
+ * 4. @author : JIMIN
+ * 5. @since : 2021. 12. 4. 오후 4:22:38
+ * 6. @version : V1.0
+ * 7. @see :
+ *                    이름     : 일자          : 근거자료   : 변경내용
+ *                   ------------------------------------------------------
+ *                    JIMIN : 2021. 12. 4. :            : 신규 개발.
+ */
 package com.web.atm.dao.Impl;
 
 import java.sql.Connection;
@@ -9,8 +22,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.web.atm.dao.UserDao;
-import com.web.atm.di.entity.User;
+import com.web.atm.di.entity.UserDo;
 
+/** Class
+ * 
+ * 
+ * <PRE>
+ * @className : UserJdbcDao
+ * @fileName  : UserJdbcDao.java
+ * @package   : com.web.atm.dao.Impl
+ * @comment   :
+ * @author    : JIMIN
+ * @since     : 2021. 12. 4. 오후 4:22:53
+ * </PRE>
+ */
 public class UserJdbcDao implements UserDao {
 	private String driver;
 	private String url;
@@ -82,8 +107,8 @@ public class UserJdbcDao implements UserDao {
 	}
 
 	@Override
-	public User getUser(String id) {
-		User user=null;
+	public UserDo getUser(String id) {
+		UserDo user=null;
 		String sql = "select * from USER where userId = ?";
 		System.out.println("getUser함수 sql>>"+sql);
 		try {
@@ -95,7 +120,7 @@ public class UserJdbcDao implements UserDao {
 			rs = stmt.executeQuery();
 
 			if (rs.next()) {
-				user=new User();
+				user=new UserDo();
 				user.setSn(rs.getInt("sn"));
 				user.setUserId(rs.getString("userId"));
 				user.setUserName(rs.getString("userName"));
@@ -145,8 +170,8 @@ public class UserJdbcDao implements UserDao {
 	}
 
 	@Override
-	public List<User> getUserList(String query) {
-		List<User> userList=null;
+	public List<UserDo> getUserList(String query) {
+		List<UserDo> userList=null;
 		
 		String sql = "select sn, userId, userName from USER";
 		sql = sql + (query != null && !query.equals("") ? " WHERE " + query : " ORDER BY sn");
@@ -157,10 +182,10 @@ public class UserJdbcDao implements UserDao {
 			stmt =  conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			if (rs.isBeforeFirst()) {
-				userList=new ArrayList<User>();
+				userList=new ArrayList<UserDo>();
 				
 				while(rs.next()) {
-					User user=new User();
+					UserDo user=new UserDo();
 					user.setSn(rs.getInt("sn"));
 					user.setUserId(rs.getString("userId"));
 					user.setUserName(rs.getString("userName"));
@@ -181,7 +206,7 @@ public class UserJdbcDao implements UserDao {
 	}
 
 	@Override
-	public boolean insertUser(User user) {
+	public boolean insertUser(UserDo user) {
 		int TF=0;
 		String sql = "INSERT INTO USER(userId, userPwd, userName, phone, address, birth,passportNo) VALUES(?,?,?,?,?,?,?)";
 		try {

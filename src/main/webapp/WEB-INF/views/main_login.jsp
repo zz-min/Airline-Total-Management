@@ -25,11 +25,11 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
 	<!-- JavaScript -->
-	<script type="text/javascript" src="/js/main_login.js?5411d7" defer></script>
+	<script type="text/javascript" src="/js/main_login.js?ghds4" defer></script>
 	
 	<link href="/css/common.css" rel="stylesheet" type="text/css"><!-- 공통 -->
 	<link href="/css/dialog.css" rel="stylesheet" type="text/css"><!-- 모든 다이알로그 공통 -->
-	<link href="/css/main_login.css?8" rel="stylesheet" type="text/css"><!-- main화면 -->
+	<link href="/css/main_login.css?hije" rel="stylesheet" type="text/css"><!-- main화면 -->
 </head>
 <body>
 	<nav class="navbar">
@@ -176,6 +176,79 @@
 				</table>
 			</div>
 		</div>
+		<!-- 항공편 예약 form -->
+		<div class="booking_form">
+			<h1>항공편 예약</h1>
+			<table id="bookingTable1">
+				<thead>
+					<tr>
+						<th>항공편번호</th>
+						<th>항공사</th>
+						<th>출발날짜</th>
+						<th>출발지</th>
+						<th>출발시간</th>
+						<th>도착지</th>
+						<th>도착시간</th>
+					</tr>
+				</thead>
+				<tbody>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tbody>
+			</table>
+			<table id="bookingTable2">
+				<thead>
+					<tr>
+						<th>일등석 요금</th>
+						<th>일등석 예약 좌석 수</th>
+						<th>일반석 요금</th>
+						<th>일반석 예약 좌석 수</th>
+						<th>예상 금액</th>
+					</tr>
+				</thead>
+				<tbody>
+					<td></td>
+					<td><input type="number" min="0" max="15" id="firstClass_count"/></td>
+					<td></td>
+					<td><input type="number" min="0" max="15" id="economy_count"/></td>
+					<td></td>
+				</tbody>
+			</table>
+			<div id="seatForm" style="background-color:pink;">
+				<!-- <div class="fContainer">
+					<div class="seatBoxLine">
+						<div class="seatBox1"><input type="checkbox"/><br>firstClass<br><span>1</span></div>
+						<div class="seatBox1"><input type="checkbox"/><br>firstClass<br><span>1</span></div>
+						<div class="seatBox0"></div>
+						<div class="seatBox1"><input type="checkbox"/><br>firstClass<br><span>1</span></div>
+						<div class="seatBox1"><input type="checkbox"/><br>firstClass<br><span>1</span></div>
+					</div>*5
+				</div>
+				<div class="eContainer">
+					 <div class="seatBoxLine">
+						<div class="seatBox1"><input type="checkbox"/><span>1</span></div>
+						<div class="seatBox1"><input type="checkbox"/><span>1</span></div>
+						<div class="seatBox1"><input type="checkbox"/><span>1</span></div>
+						<div class="seatBox1"><input type="checkbox"/><span>1</span></div>
+						<div class="seatBox0"></div>
+						<div class="seatBox1"><input type="checkbox"/><span>1</span></div>
+						<div class="seatBox1"><input type="checkbox"/><span>1</span></div>
+						<div class="seatBox1"><input type="checkbox"/><span>1</span></div>
+						<div class="seatBox1"><input type="checkbox"/><span>1</span></div>
+					</div>*10
+				</div> -->
+			</div>
+			<div class="buttonContatiner">
+				<input type="button" value="예약하기" id="bookingBtn"/>
+				<input type="button" value="돌아가기" id="notBookingBtn"/>
+			</div>
+		</div>
+		
 		<!-- 예약 조회 form -->
 		<div class="rsv_form" >
 		
@@ -208,6 +281,7 @@
 				<input type="button" value="수정" id="myInfoBtn"/>
 			</div>
 		</div>
+		
 	</div>
 	
 	<!------------------------- 마이페이지 정보수정 dialog ------------------------->

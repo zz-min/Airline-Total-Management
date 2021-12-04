@@ -1,6 +1,31 @@
+/**
+ * 0. @projectName : Airline-Total-Management  항공 예약 관리시스템 - 비행어때?
+ * 1. @fileName : FlightDo.java
+ * 2. @package : com.web.atm.di.entity
+ * 3. @comment : Flight entity
+ * 4. @author : JIMIN
+ * 5. @since : 2021. 12. 4. 오후 2:06:42
+ * 6. @version : V1.0
+ * 7. @see :
+ *                    이름     : 일자          : 근거자료   : 변경내용
+ *                   ------------------------------------------------------
+ *                    JIMIN : 2021. 12. 4. :            : 신규 개발.
+ */
 package com.web.atm.di.entity;
 
-public class Flight {
+/** Class
+ * 
+ * 
+ * <PRE>
+ * @className : FlightDo
+ * @fileName  : FlightDo.java
+ * @package   : com.web.atm.di.entity
+ * @comment   :
+ * @author    : JIMIN
+ * @since     : 2021. 12. 4. 오후 2:06:42
+ * </PRE>
+ */
+public class FlightDo {
 	private int sn; // flight 테이블 시퀀스
 	private int airlineSn; // Airline 테이블 시퀀스
 	private int flight_typeSn; // flight_type 테이블 시퀀스
@@ -13,11 +38,11 @@ public class Flight {
 	private int firstClass_fee;//일등석좌석 가격
 	private int economy_fee;//이코노미좌석 가격
 	
-	public Flight() {
+	public FlightDo() {
 		
 	}
 	
-	public Flight(int sn, int airlineSn, int flight_typeSn, int avail_seat, String dep_time, String arr_time,
+	public FlightDo(int sn, int airlineSn, int flight_typeSn, int avail_seat, String dep_time, String arr_time,
 			String destination, String origin, int gate, int firstClass_fee, int economy_fee) {
 		super();
 		this.sn = sn;
@@ -128,4 +153,5 @@ public class Flight {
 				+ ", origin=" + origin + ", gate=" + gate + ", firstClass_fee=" + firstClass_fee + ", economy_fee="
 				+ economy_fee + "]";
 	}
+
 }

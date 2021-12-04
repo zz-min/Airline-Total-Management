@@ -9,8 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.web.atm.dao.FlightDao;
-import com.web.atm.di.entity.User;
-import com.web.atm.di.entity.VIEW_FLIGHT_DETAIL;
+import com.web.atm.di.entity.ViewFlightDetailDo;
 
 public class FlightJdbcDao implements FlightDao {
 	private String driver;
@@ -54,8 +53,8 @@ public class FlightJdbcDao implements FlightDao {
 	}
 	
 	@Override
-	public List<VIEW_FLIGHT_DETAIL> getFlightList(String query) {
-		List<VIEW_FLIGHT_DETAIL> flightList=null;
+	public List<ViewFlightDetailDo> getFlightList(String query) {
+		List<ViewFlightDetailDo> flightList=null;
 		String sql = "select * from VIEW_FLIGHT_DETAIL";
 		sql = sql + (query != null && !query.equals("") ? " WHERE " + query : " ORDER BY sn");
 		System.out.println("getFlightList함수 sql>>"+sql);
@@ -64,10 +63,10 @@ public class FlightJdbcDao implements FlightDao {
 			stmt =  conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			if (rs.isBeforeFirst()) {
-				flightList=new ArrayList<VIEW_FLIGHT_DETAIL>();
+				flightList=new ArrayList<ViewFlightDetailDo>();
 				
 				while(rs.next()) {
-					VIEW_FLIGHT_DETAIL vfd=new VIEW_FLIGHT_DETAIL();
+					ViewFlightDetailDo vfd=new ViewFlightDetailDo();
 					vfd.setFlightSn(rs.getInt("sn"));
 					vfd.setAirlineSn(rs.getInt("airline_sn"));
 					vfd.setAirlineId(rs.getString("airlineId"));
@@ -100,8 +99,8 @@ public class FlightJdbcDao implements FlightDao {
 	}
 
 	@Override
-	public VIEW_FLIGHT_DETAIL getFlight(int sn) {
-		VIEW_FLIGHT_DETAIL vfd=null;
+	public ViewFlightDetailDo getFlight(int sn) {
+		ViewFlightDetailDo vfd=null;
 		String sql = "select * from VIEW_FLIGHT_DETAIL WHERE sn= ?";
 		System.out.println("getFlightList함수 sql>>"+sql);
 		try {
@@ -110,7 +109,7 @@ public class FlightJdbcDao implements FlightDao {
 			stmt.setInt(1, sn);
 			rs = stmt.executeQuery();
 			while(rs.next()) {
-				vfd=new VIEW_FLIGHT_DETAIL();
+				vfd=new ViewFlightDetailDo();
 				vfd.setFlightSn(rs.getInt("sn"));
 				vfd.setAirlineSn(rs.getInt("airline_sn"));
 				vfd.setAirlineId(rs.getString("airlineId"));

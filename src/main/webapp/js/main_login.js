@@ -13,8 +13,8 @@ $(function() {
 	var userInfoDialog,bookingDialog;
 	userInfoDialog = $("#changeInfo-dialog-form").dialog({
 		autoOpen: false,//페이지 로드시 다이얼로그가 자동으로 열리는 것 방지
-		height: 150,
-		width: 200,
+		height: 550,
+		width: 550,
 		modal: true,//최상위에 다이알로그 표시
 		resizable: false,//창크기 조절할 수 없도록 설정
 		buttons: {
@@ -70,22 +70,6 @@ $(function() {
 			})
 			.then(alert("항공권 조회가 시작되었습니다d"))*/
 	}
-	function booking(){
-		fetch('/api/flightReq', {// 항공편 예약 POST요청보내기 
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json; charset=UTF-8"
-			},
-			body: JSON.stringify({
-				checkedAirline: $('select[name=checkedAirline] option:selected').text(),
-				checkedDate: $('#checkedDep_date').val(),
-				checkedOrigin: $('select[name=checkedOrigin] option:selected').text(),
-				checkedDest: $('select[name=checkedDest] option:selected').text()
-			}),
-			dataType: 'json'
-		})
-	}
-
 	$(".datepicker").datepicker({
            dateFormat: 'yy-mm-dd' //달력 날짜 형태
            ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
@@ -145,32 +129,74 @@ $(function() {
 					"<td>"+value.economy_fee+"</td>"+
 					"<td><input type='button' value='선택' class='bookingBtn' id='bookingBtn"+value.flightSn+"' /></td></tr>";
 					$("#flightListTable > tbody:last").append(str);
-					
+					let snNo=value.flightSn;
 					$(`#bookingBtn${value.flightSn}`).on("click", function() {
-						bookingDialog.dialog("open");
-						dialogSetting($(this).attr('id').substring(10));
+						$(".flight_form").hide();
+						$(".booking_form").show();
+						booking(`/api/flight/${snNo}`);
 					});
 			}
 		}else alert("조회된 항공편이 없습니다!");
 	}		
-	async function dialogSetting(sn){
-		var url='/api/flight/'+sn;
+	async function booking(url){
 		const response = await fetch(url);
 		const json = await response.json();
 		if (json != null) {
-			console.log(json.economy_fee);
-			var str="<span>"+json.airlineName+"("+json.airlineId+")</span><br>"+
-					"<span>항공편 번호 - "+json.flightSn+"</span><br>"+	
-					"<span>"+json.arr_time.substring(0,10)+"</span><br>"+
-					"<span>"+json.arr_time.substring(11,16)+" ~ "+json.dep_time.substring(11,16)+"</span><br>"+
-					"<span>"+json.origin+" ~ "+json.destination+"</span><br>"+
-					"<span>일반석</span><input type='number' name='eCount' id='eCount' value='0' min='0' max='100'/>"+
-					"<span>일등석</span><input type='number' name='fCount' id='fCount' value='0' min='0' max='20'/><br>"
-					;
-			$("#bookingInfo").append(str);		
+			console.log(json.flightSn);
+			var str='';
+			$("#bookingTable1 td:eq(0)").html(json.flightSn);//항공편번호
+			$("#bookingTable1 td:eq(1)").html(json.airlineName+"("+json.airlineId+")");//항공사
+			$("#bookingTable1 td:eq(2)").html(json.arr_time.substring(0,10));//출발날짜
+			$("#bookingTable1 td:eq(3)").html(json.origin);//출발지
+			$("#bookingTable1 td:eq(4)").html(json.arr_time.substring(11,16));//출발시간
+			$("#bookingTable1 td:eq(5)").html(json.destination);//도착지
+			$("#bookingTable1 td:eq(6)").html(json.dep_time.substring(11,16));//도착시간
+			
+			$("#bookingTable2 td:eq(0)").html(json.firstClass_fee);//일등석 요금
+			$("#bookingTable2 td:eq(2)").html(json.economy_fee);//일반석 요금
+			$("#seatForm").empty();
+			if(json.firstClass_counting!=0){
+				var temp=1;
+				str+=`<div class="fContainer">`;
+				for(let i=0;i<(json.firstClass_counting/4);i++){//한줄에 4좌석
+					str+=`<div class="seatBoxLine">
+						<div class="seatBox1"><input type="checkbox" name="fCheckbox" value="${i + temp}"/><br>firstClass<br><span>${i + temp++}</span></div>
+						<div class="seatBox1"><input type="checkbox" name="fCheckbox" value="${i + temp}"/><br>firstClass<br><span>${i + temp++}</span></div>
+						<div class="seatBox0"></div>
+						<div class="seatBox1"><input type="checkbox" name="fCheckbox" value="${i + temp}"/><br>firstClass<br><span>${i + temp++}</span></div>
+						<div class="seatBox1"><input type="checkbox" name="fCheckbox" value="${i + temp}"/><br>firstClass<br><span>${i + temp}</span></div>
+					</div>`;
+				}
+					str+=`</div>`;
+			}
+			if(json.economy_counting!=0){
+				temp=1;
+				str+=`<div class="eContainer">`;
+				for(let i=0;i<(json.economy_counting/8);i++){//한줄에 8좌석
+					str+=`<div class="seatBoxLine">
+						<div class="seatBox1"><input type="checkbox" name="eCheckbox" value="${i + temp}"/><br><span>${i+(temp++)}</span></div>
+						<div class="seatBox1"><input type="checkbox" name="eCheckbox" value="${i + temp}"/><br><span>${i+(temp++)}</span></div>
+						<div class="seatBox1"><input type="checkbox" name="eCheckbox" value="${i + temp}"/><br><span>${i+(temp++)}</span></div>
+						<div class="seatBox1"><input type="checkbox" name="eCheckbox" value="${i + temp}"/><br><span>${i+(temp++)}</span></div>
+						<div class="seatBox0"></div>
+						<div class="seatBox1"><input type="checkbox" name="eCheckbox" value="${i + temp}"/><br><span>${i+(temp++)}</span></div>
+						<div class="seatBox1"><input type="checkbox" name="eCheckbox" value="${i + temp}"/><br><span>${i+(temp++)}</span></div>
+						<div class="seatBox1"><input type="checkbox" name="eCheckbox" value="${i + temp}"/><br><span>${i+(temp++)}</span></div>
+						<div class="seatBox1"><input type="checkbox" name="eCheckbox" value="${i + temp}"/><br><span>${i+(temp)}</span></div>
+					</div>`;
+				}
+				str+=`</div>`;
+			}
+			$("#seatForm").append(str);
 		}
 	}
-	
+	$("#firstClass_count,#economy_count").change(function() {
+		var total=$("#bookingTable2 td:eq(0)").text()*$("#firstClass_count").val()+
+		$("#bookingTable2 td:eq(2)").text()*$("#economy_count").val();
+		
+		$("#bookingTable2 td:eq(4)").html(total);
+	});
+
 	function getCookie(cookie_name) {
 		//document.cookie => userId=600548; userName=홍길동; login=true
 		var x, y;
@@ -237,4 +263,46 @@ $(function() {
 		$(".rsv_form").hide();
 		$(".mypage_form").show();
 	});
+	$("#notBookingBtn").on("click", function() {//예약페이지에서 돌아가기 버튼
+		$(".flight_form").show();
+		$(".booking_form").hide();
+	});
+	
+	$("#bookingBtn").on("click", function() {//예약페이지에서 예약하기 버튼
+		var select_obj_f='';
+		var select_obj_e='';
+		$("input:checkbox[name=fCheckbox]:checked").each(function(index){
+			if (index != 0) {
+            	select_obj_f += ',';
+       		}
+       		select_obj_f += $(this).val();
+		});
+		$("input:checkbox[name=eCheckbox]:checked").each(function(index){
+			if (index != 0) {
+           	 	select_obj_e += ', ';
+       		}
+       		select_obj_e += $(this).val();
+		});
+		console.log(select_obj_f);
+		console.log(select_obj_e);
+		
+		booking(select_obj_f,select_obj_e);
+		alert("예약완료");
+		$(".rsv_form").show();//예약완료 후 예약 화면 띄워주기
+		$(".booking_form").hide();
+	});
+	function booking(select_obj_f,select_obj_e){
+		fetch('/api/flightReq', {// 항공편 예약 POST요청보내기 
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json; charset=UTF-8"
+			},
+			body: JSON.stringify({
+				checkedFlightSn:$("#bookingTable1 td:eq(0)").text(),
+				select_obj_f:select_obj_f,
+				select_obj_e:select_obj_e
+			}),
+			dataType: 'json'
+		})
+	}
 });
