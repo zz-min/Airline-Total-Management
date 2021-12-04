@@ -1,6 +1,31 @@
+/**
+ * 0. @projectName : Airline-Total-Management  항공 예약 관리시스템 - 비행어때?
+ * 1. @fileName : FlightTypeDo.java
+ * 2. @package : com.web.atm.dao
+ * 3. @comment :
+ * 4. @author : JIMIN
+ * 5. @since : 2021. 12. 4. 오후 2:31:51
+ * 6. @version : V1.0
+ * 7. @see :
+ *                    이름     : 일자          : 근거자료   : 변경내용
+ *                   ------------------------------------------------------
+ *                    JIMIN : 2021. 12. 4. :            : 신규 개발.
+ */
 package com.web.atm.di.entity;
 
-public class Flight_Type {
+/** Class
+ * 
+ * 
+ * <PRE>
+ * @className : FlightTypeDo
+ * @fileName  : FlightTypeDo.java
+ * @package   : com.web.atm.di.entity
+ * @comment   :
+ * @author    : JIMIN
+ * @since     : 2021. 12. 5. 오전 3:25:38
+ * </PRE>
+ */
+public class FlightTypeDo {
 	private int sn; // Flight_Type 테이블 시퀀스
 	private String flightType; // Flight_Type 비행기명
 	private int airline_sn; // Airline 테이블 시퀀스
@@ -8,11 +33,11 @@ public class Flight_Type {
 	private int economy_counting; // 이코노미 좌석 수
 	
 	
-	public Flight_Type() {
+	public FlightTypeDo() {
 		
 	}
 	
-	public Flight_Type(int sn, String flightType, int airline_sn, int firstCalss_counting, int economy_counting) {
+	public FlightTypeDo(int sn, String flightType, int airline_sn, int firstCalss_counting, int economy_counting) {
 		super();
 		this.sn = sn;
 		this.flightType = flightType;

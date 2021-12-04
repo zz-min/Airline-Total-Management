@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.web.atm.comtroller.AtmService;
 import com.web.atm.comtroller.ControllerInterface;
-import com.web.atm.di.entity.User;
+import com.web.atm.di.entity.UserDo;
 
 public class ApiUserController implements ControllerInterface {
 
@@ -42,7 +42,7 @@ public class ApiUserController implements ControllerInterface {
 				System.out.println("모든 user정보 조회 - ApiUserController - GET");
 			} else if (method.equals("POST")) {// 새로운 user정보 생성하기 - 회원가입
 				System.out.println("새로운 user정보 생성 - ApiUserController - POST");
-				User user=new User();
+				UserDo user=new UserDo();
 				String json = null;
 
 				try {
@@ -53,7 +53,7 @@ public class ApiUserController implements ControllerInterface {
 			    }
 				System.out.println(json);
 				try {
-					user = mapper.readValue(json, User.class);
+					user = mapper.readValue(json, UserDo.class);
 					System.out.println(user.getUserId());
 				} catch (JsonMappingException e) {
 					e.printStackTrace();

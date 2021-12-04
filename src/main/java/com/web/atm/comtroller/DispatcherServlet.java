@@ -2,7 +2,6 @@
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 import java.util.Properties;
 
 import javax.servlet.RequestDispatcher;
@@ -14,9 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.web.atm.dao.AirlineDao;
 import com.web.atm.dao.FlightDao;
+import com.web.atm.dao.FlightRequestDao;
+import com.web.atm.dao.FlightSeatDao;
 import com.web.atm.dao.UserDao;
 import com.web.atm.dao.Impl.AirlineJdbcDao;
 import com.web.atm.dao.Impl.FlightJdbcDao;
+import com.web.atm.dao.Impl.FlightRequestJdbcDao;
+import com.web.atm.dao.Impl.FlightSeatJdbcDao;
 import com.web.atm.dao.Impl.UserJdbcDao;
 
 /**
@@ -66,9 +69,11 @@ public class DispatcherServlet extends HttpServlet {
  		UserDao userDao=new UserJdbcDao(driver, url, userName, password);
  		AirlineDao airlineDao=new AirlineJdbcDao(driver, url, userName, password);
  		FlightDao flightDao=new FlightJdbcDao(driver, url, userName, password);
+ 		FlightRequestDao FlightRequestDao=new FlightRequestJdbcDao(driver, url, userName, password);
+ 		FlightSeatDao FlightSeatDao=new FlightSeatJdbcDao(driver, url, userName, password);
  		
  		mapper = new HandlerMapping();
- 		atmService= new AtmServiceImpl(userDao,airlineDao,flightDao);
+ 		atmService= new AtmServiceImpl(userDao,airlineDao,flightDao,FlightRequestDao,FlightSeatDao);
  		
 	}
 	

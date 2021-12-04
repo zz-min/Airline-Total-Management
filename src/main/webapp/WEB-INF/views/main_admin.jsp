@@ -25,16 +25,16 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
 	<!-- JavaScript -->
-	<script type="text/javascript" src="/js/main_login.js?5411d7" defer></script>
+	<script type="text/javascript" src="/js/main_admin.js?5411d7" defer></script>
 	
 	<link href="/css/common.css" rel="stylesheet" type="text/css"><!-- 공통 -->
 	<link href="/css/dialog.css" rel="stylesheet" type="text/css"><!-- 모든 다이알로그 공통 -->
-	<link href="/css/main_login.css?8" rel="stylesheet" type="text/css"><!-- main화면 -->
+	<link href="/css/main_admin.css?8" rel="stylesheet" type="text/css"><!-- main화면 -->
 </head>
 <body>
 	<nav class="navbar">
 		<div class="navbar_logo">
-			<a href="/main_login"> 
+			<a href="/main_admin"> 
 				<i class="fas fa-plane-departure"></i>
 				<span>Airline Total Management</span>
 				<i class="fas fa-plane-departure"></i>
@@ -86,23 +86,60 @@
 				<img id="img" src="/img/airport.jpg">
 			</div>
 			<div id="selectContainer">
-				
+				관리자 페이지
 			</div>
 		</div>
-		<!-- 항공편 조회 form -->
-		<div class="flight_form">
-			
-			<div id="flightListTableContainer">
-				
-			</div>
+		<!-- 항공편현황관리 form -->
+		<div class="flightAdmin_form">
+			<h1>항공편 현황 관리</h1>
+			<table id="flightAdminTable">
+				<thead>
+					<tr>
+						<th>항공편번호</th>
+						<th>항공사</th>
+						<th>항공기</th>
+						<th>일등석</th>
+						<th>일반석</th>
+						<th>출발지</th>
+						<th>도착지</th>
+						<th>운행 시간</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
 		</div>
-		<!-- 예약 조회 form -->
-		<div class="rsv_form" >
-		
+		<!-- 게이트관리 form -->
+		<div class="gateAdmin_form" >
+			<h1>게이트관리</h1>
+			<table id="gateAdminTable">
+				<thead>
+					<tr>
+						<th>항공편번호</th>
+						<th>항공사</th>
+						<th>항공기</th>
+						<th>운행 시간</th>
+						<th>게이트</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
 		</div>
-		<!-- 마이페이지 form -->
-		<div class="mypage_form">
-			
+		<!-- 회원관리 form -->
+		<div class="userAdmin_form">
+			<h1>회원관리</h1>
+			<table id="userAdminTable">
+				<thead>
+					<tr>
+						<th>고객번호</th>
+						<th>고객 아이디</th>
+						<th>이름</th>
+						<th>전화번호</th>
+						<th>생년월일</th>
+						<th>여권번호</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
 		</div>
 	</div>
 	

@@ -140,7 +140,29 @@ public class UserJdbcDao implements UserDao {
 		}
 		return user;
 	}
-
+	@Override
+	public int getUserSn(String id) {
+		int userSn=0;
+		String sql = "select sn from USER where userId = ?";
+		try {
+			connect();
+			stmt =  conn.prepareStatement(sql);
+			stmt.setString(1, id);
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				userSn =rs.getInt("sn");
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+				try {
+					disconnect();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		return userSn;
+	}
 	@Override
 	public String getUserName(String id) {
 		String userName=null;

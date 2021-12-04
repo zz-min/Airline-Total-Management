@@ -35,6 +35,7 @@ public interface UserDao {
 	
 	UserDo getUser(String id);
 	
+	int getUserSn(String id);
 	String getUserName(String id);
 	
 	List<UserDo> getUserList(String query);

@@ -17,8 +17,11 @@ import java.util.List;
 
 import com.web.atm.dao.AirlineDao;
 import com.web.atm.dao.FlightDao;
+import com.web.atm.dao.FlightRequestDao;
+import com.web.atm.dao.FlightSeatDao;
 import com.web.atm.dao.UserDao;
 import com.web.atm.di.entity.AirlineDo;
+import com.web.atm.di.entity.FlightRequestDo;
 import com.web.atm.di.entity.UserDo;
 import com.web.atm.di.entity.ViewFlightDetailDo;
 
@@ -38,14 +41,19 @@ public class AtmServiceImpl implements AtmService {
 	private UserDao userDao = null;
 	private AirlineDao airlineDao = null;
 	private FlightDao flightDao = null;
+	private FlightRequestDao flightRequestDao = null;
+	private FlightSeatDao flightSeatDao = null;
 	
 	public AtmServiceImpl() {
 	}
 
-	public AtmServiceImpl(UserDao userDao,AirlineDao airlineDao, FlightDao flightDao) {
+	public AtmServiceImpl(UserDao userDao,AirlineDao airlineDao, FlightDao flightDao
+			,FlightRequestDao flightRequestDao,FlightSeatDao flightSeatDao) {
 		this.userDao = userDao;
 		this.airlineDao = airlineDao;
 		this.flightDao=flightDao;
+		this.flightRequestDao=flightRequestDao;
+		this.flightSeatDao=flightSeatDao;
 	}
 	
 	/* User Dao */
@@ -62,7 +70,10 @@ public class AtmServiceImpl implements AtmService {
 	public UserDo getUser(String id) {
 		return userDao.getUser(id);
 	}
-
+	@Override
+	public int getUserSn(String id) {
+		return userDao.getUserSn(id);
+	}
 	@Override
 	public String getUserName(String id) {
 		return  userDao.getUserName(id);
@@ -113,5 +124,16 @@ public class AtmServiceImpl implements AtmService {
 	public ViewFlightDetailDo getFlight(int sn) {
 		return flightDao.getFlight(sn);
 	}
+	/* FlightRequestJdbcDao */
+	@Override
+	public boolean insertFlightRequest(FlightRequestDo flightRequestDo) {
+		return flightRequestDao.insertFlightRequest(flightRequestDo);
+	}
+	@Override
+	public boolean deleteFlightRequest(int flightRequestSn) {
+		return flightRequestDao.deleteFlightRequest(flightRequestSn);
+	}
+	
+	/* FlightSeatJdbcDao */
 
 }

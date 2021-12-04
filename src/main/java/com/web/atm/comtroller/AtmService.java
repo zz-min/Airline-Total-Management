@@ -16,6 +16,7 @@ package com.web.atm.comtroller;
 import java.util.List;
 
 import com.web.atm.di.entity.AirlineDo;
+import com.web.atm.di.entity.FlightRequestDo;
 import com.web.atm.di.entity.UserDo;
 import com.web.atm.di.entity.ViewFlightDetailDo;
 
@@ -36,6 +37,7 @@ public interface AtmService {
 	boolean loginAvailability(String id,String pwd);
 	boolean insertUser(UserDo user);
 	UserDo getUser(String id);
+	int getUserSn(String id);
 	String getUserName(String id);
 	List<UserDo> getUserList(String query);
 	
@@ -50,4 +52,9 @@ public interface AtmService {
 	/* Fligh Dao */
 	List<ViewFlightDetailDo> getFlightList(String query);
 	ViewFlightDetailDo getFlight(int sn);
+	
+	/* FlightRequestJdbcDao */
+	boolean insertFlightRequest(FlightRequestDo flightRequestDo);
+	boolean deleteFlightRequest(int flightRequestSn);
+	/* FlightSeatJdbcDao */
 }

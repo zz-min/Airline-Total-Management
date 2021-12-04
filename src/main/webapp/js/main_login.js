@@ -133,12 +133,12 @@ $(function() {
 					$(`#bookingBtn${value.flightSn}`).on("click", function() {
 						$(".flight_form").hide();
 						$(".booking_form").show();
-						booking(`/api/flight/${snNo}`);
+						flightChecked(`/api/flight/${snNo}`);
 					});
 			}
 		}else alert("조회된 항공편이 없습니다!");
 	}		
-	async function booking(url){
+	async function flightChecked(url){
 		const response = await fetch(url);
 		const json = await response.json();
 		if (json != null) {
@@ -283,24 +283,21 @@ $(function() {
        		}
        		select_obj_e += $(this).val();
 		});
-		console.log(select_obj_f);
-		console.log(select_obj_e);
-		
 		booking(select_obj_f,select_obj_e);
 		alert("예약완료");
 		$(".rsv_form").show();//예약완료 후 예약 화면 띄워주기
 		$(".booking_form").hide();
 	});
-	function booking(select_obj_f,select_obj_e){
+	function booking(select_obj_f,select_obj_e,sn){
 		fetch('/api/flightReq', {// 항공편 예약 POST요청보내기 
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json; charset=UTF-8"
 			},
 			body: JSON.stringify({
-				checkedFlightSn:$("#bookingTable1 td:eq(0)").text(),
-				select_obj_f:select_obj_f,
-				select_obj_e:select_obj_e
+				flightSn: $("#bookingTable1 td:eq(0)").text(),
+				select_obj_f: select_obj_f,
+				select_obj_e: select_obj_e
 			}),
 			dataType: 'json'
 		})

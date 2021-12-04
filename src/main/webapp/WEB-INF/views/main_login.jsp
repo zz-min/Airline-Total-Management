@@ -25,7 +25,7 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
 	<!-- JavaScript -->
-	<script type="text/javascript" src="/js/main_login.js?ghds4" defer></script>
+	<script type="text/javascript" src="/js/main_login.js?ds4" defer></script>
 	
 	<link href="/css/common.css" rel="stylesheet" type="text/css"><!-- 공통 -->
 	<link href="/css/dialog.css" rel="stylesheet" type="text/css"><!-- 모든 다이알로그 공통 -->
