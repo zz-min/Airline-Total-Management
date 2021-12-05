@@ -55,11 +55,9 @@ public class FlightSeatJdbcDao implements FlightSeatDao {
 		Class.forName(driver);
 		conn = DriverManager.getConnection(url, userName, password);
 		
-		//System.out.println("UserJdbcDao  DB연결성공");
 	}
 
 	private void disconnect() throws SQLException {
-		//System.out.println("UserJdbcDao  DB연결해제");
 		
 		if (rs != null && !rs.isClosed()) {
 			rs.close();
@@ -76,13 +74,11 @@ public class FlightSeatJdbcDao implements FlightSeatDao {
 	}
 	@Override
 	public boolean insertFlightSeat(FlightSeatDo flightSeatDo) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean deleteFlightSeat(int flightRequestSn) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

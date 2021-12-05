@@ -81,7 +81,7 @@ public class AtmServiceImpl implements AtmService {
 
 	@Override
 	public List<UserDo> getUserList(String query) {
-		return null;
+		return userDao.getUserList(query);
 	}
 	
 	/* Airline Dao */

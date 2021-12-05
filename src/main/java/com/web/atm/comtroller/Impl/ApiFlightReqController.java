@@ -26,7 +26,6 @@ import com.web.atm.comtroller.AtmService;
 import com.web.atm.comtroller.ControllerInterface;
 import com.web.atm.di.entity.BookingInfo;
 import com.web.atm.di.entity.FlightRequestDo;
-import com.web.atm.di.entity.UserDo;
 
 /** Class
  * 

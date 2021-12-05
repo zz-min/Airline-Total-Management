@@ -1,3 +1,4 @@
+<!-- /Airline-Total-Management/src/main/webapp/WEB-INF/views/main_admin.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -25,11 +26,11 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
 	<!-- JavaScript -->
-	<script type="text/javascript" src="/js/main_admin.js?5411d7" defer></script>
+	<script type="text/javascript" src="/js/main_admin.js?517747d7" defer></script>
 	
 	<link href="/css/common.css" rel="stylesheet" type="text/css"><!-- 공통 -->
 	<link href="/css/dialog.css" rel="stylesheet" type="text/css"><!-- 모든 다이알로그 공통 -->
-	<link href="/css/main_admin.css?8" rel="stylesheet" type="text/css"><!-- main화면 -->
+	<link href="/css/main_admin.css?87dd" rel="stylesheet" type="text/css"><!-- main화면 -->
 </head>
 <body>
 	<nav class="navbar">
@@ -100,9 +101,11 @@
 						<th>항공기</th>
 						<th>일등석</th>
 						<th>일반석</th>
+						<th>유효 좌석수</th>
 						<th>출발지</th>
 						<th>도착지</th>
 						<th>운행 시간</th>
+						<th>수정하기</th>
 					</tr>
 				</thead>
 				<tbody></tbody>
@@ -119,6 +122,7 @@
 						<th>항공기</th>
 						<th>운행 시간</th>
 						<th>게이트</th>
+						<th>수정하기</th>
 					</tr>
 				</thead>
 				<tbody></tbody>
@@ -134,8 +138,10 @@
 						<th>고객 아이디</th>
 						<th>이름</th>
 						<th>전화번호</th>
+						<th>주소</th>
 						<th>생년월일</th>
 						<th>여권번호</th>
+						<th>수정하기</th>
 					</tr>
 				</thead>
 				<tbody></tbody>

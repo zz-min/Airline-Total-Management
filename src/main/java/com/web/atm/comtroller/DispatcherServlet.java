@@ -85,14 +85,10 @@ public class DispatcherServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// step #1. get request parameters
 		request.setCharacterEncoding("UTF-8");
-		//HttpSession session=request.getSession(true);//가져올 세션이 없다면 새로 생성
-		//Cookie[] cookies = request.getCookies();
 		
 		String path = request.getRequestURI();
 		System.out.println("path >>" + path);
 		String viewName = null;
-		
-
 
 		// step #2. data processing ==> dispatch request to controller
 		ControllerInterface handler = mapper.getHandler(path);
@@ -125,7 +121,6 @@ public class DispatcherServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

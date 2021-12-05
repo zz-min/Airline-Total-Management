@@ -24,7 +24,7 @@ import com.web.atm.comtroller.Impl.ApiFlightReqController;
 import com.web.atm.comtroller.Impl.ApiLoginController;
 import com.web.atm.comtroller.Impl.ApiUserController;
 import com.web.atm.comtroller.Impl.IndexController;
-import com.web.atm.comtroller.Impl.LoginMainController;
+import com.web.atm.comtroller.Impl.UserMainController;
 
 public class HandlerMapping {
 	Map<String, ControllerInterface> handlerMapper = null;
@@ -34,17 +34,16 @@ public class HandlerMapping {
 
 		handlerMapper.put("/main", new IndexController());
 		handlerMapper.put("/index", new IndexController());
-		
-		handlerMapper.put("/main_login", new LoginMainController());
+
+		handlerMapper.put("/main_login", new UserMainController());
 		handlerMapper.put("/main_admin", new AdminMainController());
 
-		 handlerMapper.put("/api/login", new ApiLoginController());
-		 
-		 handlerMapper.put("/api/users", new ApiUserController());
-		 handlerMapper.put("/api/admin", new ApiAdminController());
-		 handlerMapper.put("/api/flight", new ApiFlightController());
-		 handlerMapper.put("/api/flightReq", new ApiFlightReqController());
-		 
+		handlerMapper.put("/api/login", new ApiLoginController());
+
+		handlerMapper.put("/api/users", new ApiUserController());
+		handlerMapper.put("/api/admin", new ApiAdminController());
+		handlerMapper.put("/api/flight", new ApiFlightController());
+		handlerMapper.put("/api/flightReq", new ApiFlightReqController());
 	}
 
 	public ControllerInterface getHandler(String path) {

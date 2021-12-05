@@ -195,7 +195,7 @@ public class UserJdbcDao implements UserDao {
 	public List<UserDo> getUserList(String query) {
 		List<UserDo> userList=null;
 		
-		String sql = "select sn, userId, userName from USER";
+		String sql = "select * from USER";
 		sql = sql + (query != null && !query.equals("") ? " WHERE " + query : " ORDER BY sn");
 		System.out.println("getUserList함수 sql>>"+sql);
 		try {
@@ -211,6 +211,10 @@ public class UserJdbcDao implements UserDao {
 					user.setSn(rs.getInt("sn"));
 					user.setUserId(rs.getString("userId"));
 					user.setUserName(rs.getString("userName"));
+					user.setPhone(rs.getString("phone"));
+					user.setAddress(rs.getString("address"));
+					user.setBirth(rs.getString("birth"));
+					user.setPassportNo(rs.getString("passportNo"));
 					
 					userList.add(user);
 				}

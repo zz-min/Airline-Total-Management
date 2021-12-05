@@ -34,6 +34,10 @@
     height: 15%;
     min-width: 1255px;
     margin: 0 auto;
+    padding-top: 25px;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
 }
 #img{
     width: 800px;
@@ -52,27 +56,27 @@
 	margin: 30px;
 }
 
-#flightAdminTable,#gateadminTable, #useradminTable{
+#flightAdminTable,#gateAdminTable, #userAdminTable{
 	width: 80%;
 	text-align: center;
 	border: 3px;
 	margin: 0 auto;
 }
-#flightAdminTable>thead,#gateadminTable>thead,#useradminTable>thead{
+#flightAdminTable>thead,#gateAdminTable>thead,#userAdminTable>thead{
 	font-size: 22px;
 	background-color:var(--color-blue1);
 }
-#flightAdminTable>tbody,#gateadminTable>tbody,#useradminTable>tbody{
+#flightAdminTable>tbody,#gateAdminTable>tbody,#userAdminTable>tbody{
 	font-size: 18px;
 	font-weight:400;
 	background-color:var(--color-blue2);
 }
-#flightAdminTable>tbody>tr,#gateadminTable>tbody>tr,#useradminTable>tbody>tr{
+#flightAdminTable>tbody>tr,#gateAdminTable>tbody>tr,#userAdminTable>tbody>tr{
 	height: 40px;
 }
 #flightAdminTable th,#flightAdminTable td,
-#gateadminTable th,#gateadminTable td,
-#useradminTable th,#useradminTable td{
+#gateAdminTable th,#gateAdminTable td,
+#userAdminTable th,#userAdminTable td{
 	padding: 10px;
 	border: 2px solid white;
 }

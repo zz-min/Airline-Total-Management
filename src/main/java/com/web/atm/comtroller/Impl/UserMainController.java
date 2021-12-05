@@ -34,7 +34,7 @@ import com.web.atm.di.entity.AirportList;
  * @since     : 2021. 12. 4. 오후 4:28:03
  * </PRE>
  */
-public class LoginMainController implements ControllerInterface {
+public class UserMainController implements ControllerInterface {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response, AtmService atmService) {

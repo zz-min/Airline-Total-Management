@@ -89,12 +89,20 @@ public class ApiFlightController implements ControllerInterface {
 			if (method.equals("GET")) {// flightf list 가져오기
 				System.out.println("모든 flight정보 조회 - ApiFlightController - GET");
 				
+				//admin페이지에서 항공편현황관리 및 게이트 관리
+				List<ViewFlightDetailDo> flightList = atmService.getFlightList(null);
+				try {
+					returnMassage = mapper.writeValueAsString(flightList);
+				} catch (JsonProcessingException e) {
+					e.printStackTrace();
+				}
 			} else if (method.equals("POST")) {// 새로운 flight정보 생성하기
 				
 			}
 		}else if (temp.length > 3) {
 			String sql;
 			if(temp[3].equals("list")) {
+				
 				if(checkedAirline==null) {
 					sql = "origin ='"+checkedOrigin.trim()+
 							"' AND destination='"+checkedDest.trim()+
